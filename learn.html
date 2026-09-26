@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UFC · Learn (Redesign Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="demo-flag" data-i18n="flag">REDESIGN DEMO · not the live app · mock data · guided career-path concept</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="logo" href="index.html"><b>UFC</b><span class="pill">CAREER</span></a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="index.html#earn" data-i18n="nav_earn">Earn</a>
+      <a href="index.html#community" data-i18n="nav_community">Community</a>
+      <a href="learn.html" class="active" data-i18n="nav_learn">Learn</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" id="lang">
+        <button data-lang="en" class="on">EN</button>
+        <button data-lang="zh">中文</button>
+      </div>
+      <a class="discord" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4a19 19 0 0 0-4.7-1.4l-.3.6a17 17 0 0 1 4 1.3 15 15 0 0 0-13 0 17 17 0 0 1 4-1.3l-.3-.6A19 19 0 0 0 4 4C1.4 8 .7 12 1 16a18 18 0 0 0 5.5 2.8l1-1.5c-.6-.2-1.1-.5-1.6-.8l.4-.3a13 13 0 0 0 11.4 0l.4.3c-.5.3-1 .6-1.6.8l1 1.5A18 18 0 0 0 23 16c.4-4.7-.7-8.6-3-12ZM8.5 14c-.9 0-1.6-.8-1.6-1.9s.7-1.9 1.6-1.9 1.6.9 1.6 1.9-.7 1.9-1.6 1.9Zm7 0c-.9 0-1.6-.8-1.6-1.9s.7-1.9 1.6-1.9 1.6.9 1.6 1.9-.7 1.9-1.6 1.9Z"/></svg><span data-i18n="discord">Community</span></a>
+      <div class="avatar">D</div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="learn-hero" style="margin-top:22px">
+    <div class="overline" data-i18n="learn_over">Learn · your curriculum</div>
+    <h1 data-i18n="learn_h1" style="margin:12px 0 8px">Stage 1 is free.<br>Earn your way to the rest.</h1>
+    <p class="muted" style="max-width:620px" data-i18n="learn_sub">Nothing here unlocks by waiting. Stage 1 is open right now — watch, learn, act. Later stages unlock as you progress, with the price and payoff shown upfront. No mystery paywall.</p>
+    <a href="index.html#rail" class="btn btn-ghost" style="margin-top:16px" data-i18n="back_home">← Back to your path</a>
+  </section>
+
+  <section>
+    <!-- STAGE 1 — FREE, UNLOCKED -->
+    <div class="stage free">
+      <div class="stage-h">
+        <div class="stage-no">01</div>
+        <div>
+          <div class="overline" data-i18n="l_type1">E-Learning · online</div>
+          <h3 style="font-size:20px;font-weight:900" data-i18n="l_s1">Discover — find your edge</h3>
+        </div>
+        <span class="stage-badge badge-free" data-i18n="l_freebadge">✓ FREE · UNLOCKED</span>
+      </div>
+      <div class="lesson free-lesson" data-video>
+        <div class="li" style="background:var(--red-soft)"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--red)"><path d="M8 5v14l11-7z"/></svg></div>
+        <div><div class="lt" data-i18n="l1_1">Welcome to Trader Career</div><div class="lm" data-i18n="l_watch">Watch · intro</div></div>
+        <span class="ld">1:11</span>
+      </div>
+      <div class="lesson free-lesson" data-video>
+        <div class="li" style="background:var(--red-soft)"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--red)"><path d="M8 5v14l11-7z"/></svg></div>
+        <div><div class="lt" data-i18n="l1_2">How the belt system works</div><div class="lm" data-i18n="l_watch2">Watch · lesson</div></div>
+        <span class="ld">4:32</span>
+      </div>
+      <div class="lesson free-lesson" data-video>
+        <div class="li" style="background:var(--red-soft)"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--red)"><path d="M8 5v14l11-7z"/></svg></div>
+        <div><div class="lt" data-i18n="l1_3">Reading the market: your first setup</div><div class="lm" data-i18n="l_watch2">Watch · lesson</div></div>
+        <span class="ld">6:05</span>
+      </div>
+      <div class="lesson">
+        <div class="li" style="background:var(--gold-soft)">📝</div>
+        <div><div class="lt" data-i18n="l1_4">Quiz: are you ready for a challenge?</div><div class="lm" data-i18n="l_quiz">5 questions</div></div>
+        <span class="ld" data-i18n="l_free">Free</span>
+      </div>
+    </div>
+
+    <!-- STAGE 2 — LOCKED, priced -->
+    <div class="stage locked">
+      <div class="stage-h">
+        <div class="stage-no">🔒</div>
+        <div>
+          <div class="overline" data-i18n="l_type2">Workshop · hands-on</div>
+          <h3 style="font-size:20px;font-weight:900" data-i18n="l_s2">Build — prove it in live markets</h3>
+        </div>
+        <span class="stage-badge badge-price" data-i18n="l_unlockY">Unlock with Y Mode</span>
+      </div>
+      <p class="muted" style="font-size:13.5px" data-i18n="l_s2sub">8 live workshops where you trade a funded account with a coach watching. This is where paper knowledge becomes a real track record.</p>
+      <div class="mode-explain" data-i18n="l_ymode"><b>What is Y Mode?</b> A funded $25K challenge account at FundedXYZ (~$149). Passing it unlocks Stage 2 <b>and</b> gives you a real account to trade. You pay the firm, not us — the lessons come free with it.</div>
+    </div>
+
+    <!-- STAGE 3 — LOCKED, priced -->
+    <div class="stage locked">
+      <div class="stage-h">
+        <div class="stage-no">🔒</div>
+        <div>
+          <div class="overline" data-i18n="l_type3">Private event · IRL</div>
+          <h3 style="font-size:20px;font-weight:900" data-i18n="l_s3">Achieve — the Achievers Circle</h3>
+        </div>
+        <span class="stage-badge badge-price" data-i18n="l_unlockZ">Unlock with Z Mode</span>
+      </div>
+      <p class="muted" style="font-size:13.5px" data-i18n="l_s3sub">In-person masterminds with funded traders. Real desks, real reviews, real network.</p>
+      <div class="mode-explain" data-i18n="l_zmode"><b>What is Z Mode?</b> A funded $100K account (~$549). It's the level most of our leaderboard withdraws from ($2,800 payouts). Reach it and Stage 3 events open to you.</div>
+    </div>
+
+    <!-- STAGE 4 — LOCKED -->
+    <div class="stage locked">
+      <div class="stage-h">
+        <div class="stage-no">🔒</div>
+        <div>
+          <div class="overline" data-i18n="l_type4">Certified trader</div>
+          <h3 style="font-size:20px;font-weight:900" data-i18n="l_s4">Legacy — become certified</h3>
+        </div>
+        <span class="stage-badge badge-lock" data-i18n="l_earned">Earned, not bought</span>
+      </div>
+      <p class="muted" style="font-size:13.5px" data-i18n="l_s4sub">Reach Black Trader and get your UFC Certified Trader profile + 10% profit split on Fund Add-ons. This one you can't buy — you earn it by climbing the belts.</p>
+    </div>
+  </section>
+
+  <div class="foot"><p data-i18n="foot">UFC Career — redesign demo by Sam for David. Mock data, no backend.</p></div>
+</div>
+
+<div class="toast" id="toast"><span class="em">🎉</span><span id="toastMsg"></span></div>
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <div class="mv"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+    <div class="mb">
+      <h3 id="modalTitle">Lesson</h3>
+      <p class="muted" data-i18n="l_vph">Placeholder player — the real lesson video would stream here.</p>
+      <button class="btn btn-gold modal-close" id="modalClose" data-i18n="l_close">✓ Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+/* extend dictionary for learn page */
+Object.assign(I18N, {
+  l_type1:{en:"E-Learning · online",zh:"线上课程 · 网络"}, l_s1:{en:"Discover — find your edge",zh:"发现 —— 找到你的优势"},
+  l_freebadge:{en:"✓ FREE · UNLOCKED",zh:"✓ 免费 · 已解锁"},
+  l1_1:{en:"Welcome to Trader Career",zh:"欢迎来到 Trader Career"}, l_watch:{en:"Watch · intro",zh:"观看 · 介绍"},
+  l1_2:{en:"How the belt system works",zh:"腰带系统如何运作"}, l_watch2:{en:"Watch · lesson",zh:"观看 · 课程"},
+  l1_3:{en:"Reading the market: your first setup",zh:"读懂市场：你的第一个入场"},
+  l1_4:{en:"Quiz: are you ready for a challenge?",zh:"测验：你准备好挑战了吗？"}, l_quiz:{en:"5 questions",zh:"5 道题"}, l_free:{en:"Free",zh:"免费"},
+  l_type2:{en:"Workshop · hands-on",zh:"实战工作坊 · 动手"}, l_s2:{en:"Build — prove it in live markets",zh:"建立 —— 在真实市场证明"},
+  l_unlockY:{en:"Unlock with Y Mode",zh:"用 Y Mode 解锁"},
+  l_s2sub:{en:"8 live workshops where you trade a funded account with a coach watching. This is where paper knowledge becomes a real track record.",zh:"8 场实战工作坊，你在教练指导下交易资助账户。纸上知识在这里变成真实战绩。"},
+  l_ymode:{en:"<b>What is Y Mode?</b> A funded $25K challenge account at FundedXYZ (~$149). Passing it unlocks Stage 2 <b>and</b> gives you a real account to trade. You pay the firm, not us — the lessons come free with it.",zh:"<b>什么是 Y Mode？</b> FundedXYZ 的 $25K 资助挑战账户（约 $149）。通过后解锁阶段 2，<b>并且</b>获得可交易的真实账户。你付费给自营公司，而非我们 —— 课程随账户免费附赠。"},
+  l_type3:{en:"Private event · IRL",zh:"私人聚会 · 线下"}, l_s3:{en:"Achieve — the Achievers Circle",zh:"达成 —— 成就者圈子"},
+  l_unlockZ:{en:"Unlock with Z Mode",zh:"用 Z Mode 解锁"},
+  l_s3sub:{en:"In-person masterminds with funded traders. Real desks, real reviews, real network.",zh:"与资助交易者的线下智囊会。真实交易桌、真实复盘、真实人脉。"},
+  l_zmode:{en:"<b>What is Z Mode?</b> A funded $100K account (~$549). It's the level most of our leaderboard withdraws from ($2,800 payouts). Reach it and Stage 3 events open to you.",zh:"<b>什么是 Z Mode？</b> $100K 资助账户（约 $549）。这是排行榜大多数人提现的级别（$2,800 提现）。达到后，阶段 3 活动向你开放。"},
+  l_type4:{en:"Certified trader",zh:"认证交易员"}, l_s4:{en:"Legacy — become certified",zh:"传承 —— 成为认证交易员"},
+  l_earned:{en:"Earned, not bought",zh:"靠实力，非购买"},
+  l_s4sub:{en:"Reach Black Trader and get your UFC Certified Trader profile + 10% profit split on Fund Add-ons. This one you can't buy — you earn it by climbing the belts.",zh:"达到黑带，获得 UFC 认证交易员资料 + Fund Add-on 10% 利润分成。这个买不到 —— 靠攀登腰带赢得。"},
+  l_vph:{en:"Placeholder player — the real lesson video would stream here.",zh:"占位播放器 —— 真实课程视频将在此播放。"},
+  l_close:{en:"✓ Close",zh:"✓ 关闭"}
+});
+document.addEventListener("DOMContentLoaded", ()=>{
+  applyLang();
+  document.querySelectorAll("[data-video]").forEach(v=>{
+    v.onclick = ()=>{ document.getElementById("modalBg").classList.add("show"); };
+  });
+  document.getElementById("modalClose").onclick = ()=> document.getElementById("modalBg").classList.remove("show");
+  document.getElementById("modalBg").onclick = (e)=>{ if(e.target.id==="modalBg") document.getElementById("modalBg").classList.remove("show"); };
+});
+</script>
+</body>
+</html>
