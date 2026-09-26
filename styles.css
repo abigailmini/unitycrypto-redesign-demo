@@ -248,10 +248,6 @@ section{margin-top:22px}
 
 /* ---------- footer ---------- */
 .foot{margin:40px 0 28px;text-align:center;color:var(--text-3);font-size:12px}
-.demo-flag{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--gold);color:#1a1205;
-  text-align:center;font-size:11px;font-weight:800;letter-spacing:.04em;padding:4px}
-.demo-flag+.nav{top:22px}
-body{padding-top:22px}
 
 /* ---------- responsive ---------- */
 @media(max-width:880px){

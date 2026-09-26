@@ -36,7 +36,6 @@ const STEPS = [
 
 /* ---------- i18n dictionary (page chrome) ---------- */
 const I18N = {
-  flag:{en:"REDESIGN DEMO · not the live app · mock data · guided career-path concept",zh:"重新设计演示 · 非正式应用 · 模拟数据 · 引导式职业路径概念"},
   nav_home:{en:"Home",zh:"首页"}, nav_earn:{en:"Earn",zh:"赚取"}, nav_community:{en:"Community",zh:"社区"}, nav_learn:{en:"Learn",zh:"学习"},
   discord:{en:"Community",zh:"社区"},
   belt_white:{en:"White Trader",zh:"白带交易者"}, belt_next:{en:"Next: Yellow Trader",zh:"下一级：黄带"},
@@ -69,11 +68,12 @@ const I18N = {
 let LANG = localStorage.getItem("ufc_lang") || "en";
 const t = (k) => (I18N[k] ? I18N[k][LANG] : k);
 
-/* ---------- progress state (persists across demo) ---------- */
-let progress = parseInt(localStorage.getItem("ufc_progress") || "0", 10); // completed steps
-let withdrawn = parseInt(localStorage.getItem("ufc_withdrawn") || "3200", 10);
+/* ---------- progress state (fresh career path on every load) ---------- */
+let progress = 0; // completed steps — always starts at the beginning
+let withdrawn = 3200;
+localStorage.removeItem("ufc_progress"); localStorage.removeItem("ufc_withdrawn");
 
-function saveState(){ localStorage.setItem("ufc_progress", progress); localStorage.setItem("ufc_withdrawn", withdrawn); }
+function saveState(){ /* demo: career path intentionally not persisted */ }
 
 /* ---------- render quest rail ---------- */
 function renderRail(){
@@ -222,9 +222,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if(mc) mc.onclick = () => closeVideo(true);
   const mb = document.getElementById("modalBg");
   if(mb) mb.onclick = (e)=>{ if(e.target === mb) closeVideo(false); };
-  // reset helper (double-click the demo flag to restart the journey)
-  const flag = document.querySelector(".demo-flag");
-  if(flag) flag.ondblclick = () => { progress=0; withdrawn=3200; saveState(); renderRail(); toast(LANG==="zh"?"演示已重置":"Demo reset"); };
-
   applyLang();
 });
