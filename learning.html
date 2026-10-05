@@ -502,13 +502,14 @@
     if (e.key === "Escape" && overlay.classList.contains("is-open")) close();
   });
 
-  // CTA — demo only (no real payment)
+  // CTA — go to the checkout page (carry current language)
   document.getElementById("pwCta").addEventListener("click", function () {
     var cta = document.getElementById("pwCta");
     var isZh = overlay.getAttribute("data-lang") === "zh";
-    cta.textContent = isZh ? "\u6b63\u5728\u5f00\u542f\u4f60\u7684\u4ea4\u6613\u5458\u751f\u6daf\u2026" : "Starting your Trader Career\u2026";
+    cta.textContent = isZh ? "\u6b63\u5728\u524d\u5f80\u7ed3\u8d26\u2026" : "Going to checkout\u2026";
     cta.style.filter = "brightness(1.1)";
-    setTimeout(close, 900);
+    var href = "checkout.html" + (isZh ? "?lang=zh" : "");
+    setTimeout(function () { window.location.href = href; }, 500);
   });
 
   // Video testimonials — lazy-load a YouTube iframe into the card on click.

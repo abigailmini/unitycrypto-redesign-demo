@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preload" as="image" href="assets/img/unity-fund-challenge-theme.svg">
+<meta name="theme-color" content="#0b0b0e">
+<title>Checkout · Unity Fund Challenge</title>
+<meta name="description" content="Start your Trader Career — Unity Fund Challenge secure checkout.">
+<link rel="icon" type="image/png" href="assets/img/icon.png">
+<link rel="apple-touch-icon" href="assets/img/icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* ===== Checkout — native UFC design system (same tokens as paywall / ufc.unitycrypto.com) ===== */
+.co{
+  --bg:#0b0c0e; --panel:#17191d; --card:#15171b; --card2:#121418;
+  --text:#f5f5f6; --muted:#aeb0b8; --gold:#edc443; --gold-hi:#f6d466;
+  --line:#303238; --gline:#454034; --ghover:#9a8244;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body.co{
+  background:
+    radial-gradient(130% 60% at 50% -6%, #edc4430c, transparent 55%),
+    linear-gradient(180deg,#0d0f12 0%, #0b0c0e 100%);
+  color:var(--text); font-family:var(--font);
+  min-height:100vh; -webkit-font-smoothing:antialiased;
+}
+.co a{ color:inherit; }
+img{ display:block; }
+
+/* language visibility */
+.co[data-lang="en"] [data-l="zh"]{ display:none; }
+.co[data-lang="zh"] [data-l="en"]{ display:none; }
+
+/* ===== Top bar ===== */
+.co-top{
+  display:flex; align-items:center; gap:14px;
+  padding:14px 22px; border-bottom:1px solid #26281f;
+  background:#0b0c0eb0; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  position:sticky; top:0; z-index:20;
+}
+.co-top img{ height:34px; width:auto; }
+.co-top-right{ margin-left:auto; display:flex; align-items:center; gap:14px; }
+.co-secure{
+  display:flex; align-items:center; gap:7px;
+  font-size:11px; font-weight:600; letter-spacing:.06em; color:var(--muted);
+}
+.co-secure svg{ color:var(--gold); flex:0 0 auto; }
+@media(max-width:560px){ .co-secure span{ display:none; } }
+.uc-lang{
+  display:inline-flex; border:1px solid var(--line); border-radius:999px;
+  overflow:hidden; background:#111216;
+}
+.uc-lang button{
+  background:none; border:none; cursor:pointer;
+  font:inherit; font-size:12px; font-weight:600; color:var(--muted);
+  padding:6px 13px; transition:background .2s,color .2s;
+}
+.uc-lang button[aria-pressed="true"]{ background:var(--gold); color:#131416; }
+
+/* ===== Layout ===== */
+.co-wrap{
+  max-width:1060px; margin:0 auto; padding:34px 22px 120px;
+  display:grid; grid-template-columns:1fr; gap:22px;
+}
+@media(min-width:900px){
+  .co-wrap{ grid-template-columns:1.02fr .98fr; gap:28px; padding-bottom:60px; align-items:start; }
+}
+
+.co-eyebrow{
+  display:flex; align-items:center; gap:8px;
+  font-size:10px; font-weight:600; letter-spacing:2.2px; text-transform:uppercase;
+  color:var(--muted); margin:0 0 14px;
+}
+.co-eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); }
+
+/* ===== LEFT — order summary ===== */
+.co-summary{ min-width:0; }
+.co-head h1{
+  margin:0 0 7px; font-size:26px; line-height:1.22; font-weight:650;
+  letter-spacing:-.6px; color:var(--text);
+}
+.co-head h1 .hl{ color:var(--gold); }
+.co-head p{ margin:0 0 22px; font-size:14px; line-height:1.6; color:var(--muted); max-width:46ch; }
+@media(min-width:900px){ .co-head h1{ font-size:30px; } }
+
+.co-stack{
+  margin:0 0 16px; padding:18px 20px;
+  background:var(--card); border:1px solid var(--line); border-radius:13px;
+}
+.co-stack-h{
+  font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 13px;
+}
+.co-stack-row{
+  display:flex; align-items:center; gap:11px;
+  padding:9px 0; border-bottom:1px solid #2a2c26;
+  font-size:14px; color:var(--text);
+}
+.co-stack-row:last-of-type{ border-bottom:none; }
+.co-check{
+  flex:0 0 auto; width:19px; height:19px; border-radius:999px;
+  background:#edc44316; border:1px solid #edc44366;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-size:11px; font-weight:700;
+}
+.co-stack-name{ flex:1 1 auto; line-height:1.4; }
+.co-stack-val{
+  flex:0 0 auto; font-size:13px; font-weight:600; color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.co-stack-total{
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-top:13px; padding-top:14px; border-top:1px solid #3b3b3d;
+}
+.co-stack-total-l{ font-size:13.5px; color:var(--muted); }
+.co-stack-total-l s{ color:#6b6f66; }
+.co-stack-total-r{ font-size:15px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; }
+.co-stack-total-r b{ color:var(--gold); font-size:20px; }
+
+/* gold highlight — credit back */
+.co-credit{
+  position:relative; margin:0 0 16px; padding:16px 18px;
+  display:flex; align-items:center; gap:13px;
+  background:linear-gradient(140deg,#25231b, #15171b 65%);
+  border:1px solid #484338; border-radius:13px;
+  box-shadow:0 16px 46px rgba(0,0,0,.2);
+}
+.co-credit-ic{
+  flex:0 0 auto; width:40px; height:40px; border-radius:999px;
+  background:var(--gold); color:#131416;
+  display:flex; align-items:center; justify-content:center;
+}
+.co-credit-txt{ font-size:13.5px; line-height:1.55; color:#dfe0d9; }
+.co-credit-txt b{ color:var(--gold); font-weight:700; }
+.co-credit-txt .net{ color:#fff; font-weight:600; }
+
+/* trust row */
+.co-trust{
+  display:flex; align-items:center; flex-wrap:wrap; gap:7px 14px;
+  margin:0 0 18px; padding:12px 15px;
+  background:#111216; border:1px solid var(--line); border-radius:12px;
+  font-size:12px; color:var(--muted);
+}
+.co-trust span{ display:inline-flex; align-items:center; gap:6px; }
+.co-trust .sep{ color:#555c4c; }
+.co-trust svg{ color:var(--gold); flex:0 0 auto; }
+
+/* testimonials + stats */
+.co-social-h{
+  font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); margin:2px 0 11px;
+}
+.co-testi{ display:flex; gap:11px; margin:0 0 14px; }
+.co-tcard{
+  flex:1 1 0; min-width:0; display:flex; gap:10px; align-items:flex-start;
+  padding:12px 13px; background:var(--card); border:1px solid var(--line); border-radius:12px;
+}
+.co-tcard img{
+  flex:0 0 auto; width:38px; height:38px; border-radius:999px; object-fit:cover;
+  border:1px solid #3a3b33;
+}
+.co-tcard-b{ min-width:0; }
+.co-tcard-stars{ font-size:11px; color:var(--gold); letter-spacing:.06em; }
+.co-tcard-q{ margin:3px 0 4px; font-size:12.5px; line-height:1.45; color:#dfe0d9; }
+.co-tcard-n{ font-size:11px; color:var(--muted); font-weight:600; }
+@media(max-width:560px){ .co-testi{ flex-direction:column; } }
+
+.co-stats{
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px;
+  padding:12px 14px; text-align:center;
+  background:#111216; border:1px solid var(--line); border-radius:12px;
+}
+.co-stats span{ font-size:12.5px; color:var(--muted); }
+.co-stats b{ color:var(--text); font-weight:700; font-variant-numeric:tabular-nums; }
+.co-stats .sep{ color:#555c4c; }
+
+/* ===== RIGHT — payment card ===== */
+.co-pay{
+  background:
+    radial-gradient(120% 60% at 50% -8%, #edc4430d, transparent 55%),
+    linear-gradient(160deg,#1a1b1e 0%, #121417 70%);
+  border:1px solid var(--gline); border-radius:16px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  padding:22px 20px;
+}
+@media(min-width:900px){
+  .co-pay{ padding:26px 24px; position:sticky; top:84px; }
+}
+.co-pay-h{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  margin:0 0 4px;
+}
+.co-pay-h h2{ margin:0; font-size:17px; font-weight:650; letter-spacing:-.3px; }
+.co-pay-h .amt{ font-size:22px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums; }
+.co-pay-sub{ margin:0 0 20px; font-size:12px; color:var(--muted); }
+
+.co-field{ margin:0 0 14px; }
+.co-field label{
+  display:block; margin:0 0 7px; font-size:11px; font-weight:600;
+  letter-spacing:.04em; color:var(--muted); text-transform:uppercase;
+}
+.co-input{
+  width:100%; padding:12px 13px; font:inherit; font-size:14px;
+  background:#0f1114; color:var(--text);
+  border:1px solid var(--line); border-radius:9px;
+  transition:border-color .18s, box-shadow .18s;
+}
+.co-input::placeholder{ color:#6b6f78; }
+.co-input:focus{
+  outline:none; border-color:var(--gold);
+  box-shadow:0 0 0 3px #edc44322;
+}
+.co-row2{ display:flex; gap:12px; }
+.co-row2 .co-field{ flex:1 1 0; }
+
+/* payment method tabs */
+.co-tabs{
+  display:flex; gap:8px; margin:4px 0 16px;
+  padding:4px; background:#0f1114; border:1px solid var(--line); border-radius:11px;
+}
+.co-tab{
+  flex:1 1 0; display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:10px 8px; border:none; cursor:pointer; border-radius:8px;
+  background:none; color:var(--muted); font:inherit; font-size:13px; font-weight:600;
+  transition:background .18s, color .18s;
+}
+.co-tab svg{ flex:0 0 auto; }
+.co-tab[aria-selected="true"]{ background:var(--panel); color:var(--text); box-shadow:0 2px 10px rgba(0,0,0,.3); }
+.co-tab[aria-selected="true"] svg{ color:var(--gold); }
+
+.co-pane{ display:none; }
+.co-pane.is-active{ display:block; animation:coFade .22s ease; }
+@keyframes coFade{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:none;} }
+
+.co-cardfield{ position:relative; }
+.co-cardfield .brands{
+  position:absolute; right:11px; top:50%; transform:translateY(-50%);
+  display:flex; gap:5px; pointer-events:none;
+}
+.co-cardfield .brands span{
+  font-size:8px; font-weight:800; letter-spacing:.04em;
+  padding:3px 5px; border-radius:4px; background:#1d1f24; color:#c8cad0; border:1px solid #2c2e34;
+}
+
+/* select */
+.co-select-wrap{ position:relative; }
+.co-select-wrap::after{
+  content:""; position:absolute; right:14px; top:50%; transform:translateY(-30%);
+  width:8px; height:8px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+  transform:translateY(-60%) rotate(45deg); pointer-events:none;
+}
+select.co-input{ appearance:none; -webkit-appearance:none; padding-right:36px; cursor:pointer; }
+.co-fpx-note{
+  display:flex; align-items:flex-start; gap:8px;
+  margin:12px 0 0; padding:11px 12px; font-size:11.5px; line-height:1.55; color:var(--muted);
+  background:#111216; border:1px solid var(--line); border-radius:9px;
+}
+.co-fpx-note svg{ color:var(--gold); flex:0 0 auto; margin-top:1px; }
+
+/* pay button */
+.co-paybtn{
+  width:100%; min-height:56px; margin-top:6px;
+  border:none; cursor:pointer; border-radius:8px;
+  background:var(--gold); color:#131416;
+  font:inherit; font-size:16px; font-weight:700; letter-spacing:0;
+  box-shadow:0 4px 26px #edc44326;
+  transition:transform .2s, box-shadow .2s, background .2s;
+}
+.co-paybtn:hover{ transform:translateY(-2px); background:var(--gold-hi); box-shadow:0 10px 34px #edc4433a; }
+.co-paybtn:active{ transform:translateY(0); }
+.co-paymicro{
+  margin:11px 0 0; font-size:12px; color:var(--muted); text-align:center; line-height:1.6;
+}
+.co-paymicro b{ color:var(--gold); font-weight:600; }
+.co-stripe{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  margin:14px 0 0; padding-top:14px; border-top:1px solid #26281f;
+  font-size:11px; color:var(--muted);
+}
+.co-stripe svg{ color:var(--gold); flex:0 0 auto; }
+.co-stripe .pwr{ color:#c8cad0; font-weight:700; }
+
+/* ===== Mobile sticky pay bar ===== */
+.co-sticky{
+  position:fixed; left:0; right:0; bottom:0; z-index:40;
+  display:none; align-items:center; gap:12px;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:#0d0f12f2; border-top:1px solid var(--gline);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.co-sticky-info{ font-size:12px; color:var(--muted); line-height:1.3; }
+.co-sticky-info b{ display:block; color:var(--text); font-size:16px; font-weight:800; }
+.co-sticky button{
+  margin-left:auto; border:none; cursor:pointer; border-radius:8px;
+  background:var(--gold); color:#131416; font:inherit; font-size:15px; font-weight:700;
+  padding:14px 20px; white-space:nowrap;
+}
+@media(max-width:899px){ .co-sticky{ display:flex; } }
+
+/* footer */
+.co-foot{
+  max-width:1060px; margin:0 auto; padding:0 22px 40px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-size:11px; color:#767982;
+}
+@media(max-width:899px){ .co-foot{ padding-bottom:110px; } }
+</style>
+</head>
+<body class="co" data-lang="en">
+
+<header class="co-top">
+  <a href="learning.html" aria-label="Unity Fund Challenge">
+    <img src="assets/img/unity-fund-challenge-theme.svg" alt="Unity Fund Challenge" width="290" height="96">
+  </a>
+  <div class="co-top-right">
+    <span class="co-secure">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      <span data-l="en">Secure checkout</span><span data-l="zh">安全结账</span>
+    </span>
+    <div class="uc-lang" role="group" aria-label="Language / 语言">
+      <button type="button" lang="en" aria-pressed="true">EN</button>
+      <button type="button" lang="zh-Hans" aria-pressed="false">中文</button>
+    </div>
+  </div>
+</header>
+
+<div class="co-wrap">
+
+  <!-- ============ LEFT — order summary ============ -->
+  <section class="co-summary">
+    <div class="co-eyebrow"><span class="dot"></span><span data-l="en">Your order</span><span data-l="zh">你的订单</span></div>
+
+    <div class="co-head">
+      <h1>
+        <span data-l="en">Trader Career — <span class="hl">Unity Fund Challenge</span></span>
+        <span data-l="zh">交易员生涯 — <span class="hl">Unity Fund Challenge</span></span>
+      </h1>
+      <p>
+        <span data-l="en">One payment unlocks all 4 career stages — from first lesson to funded trader. Learn a lifetime skill you can use anywhere, anytime.</span>
+        <span data-l="zh">一次付款即可解锁全部 4 个生涯阶段 — 从第一节课到拿到资金的交易员。掌握一项随时随地都能用的终身技能。</span>
+      </p>
+    </div>
+
+    <!-- value recap -->
+    <div class="co-stack">
+      <div class="co-stack-h"><span data-l="en">Everything included</span><span data-l="zh">包含的全部内容</span></div>
+      <div class="co-stack-row">
+        <span class="co-check">✓</span>
+        <span class="co-stack-name"><span data-l="en">E-Learning library (full video course)</span><span data-l="zh">电子学习课程库（完整视频课程）</span></span>
+        <span class="co-stack-val">$499</span>
+      </div>
+      <div class="co-stack-row">
+        <span class="co-check">✓</span>
+        <span class="co-stack-name"><span data-l="en">4-Stage Trader Career path</span><span data-l="zh">四阶段交易员生涯路径</span></span>
+        <span class="co-stack-val">$997</span>
+      </div>
+      <div class="co-stack-row">
+        <span class="co-check">✓</span>
+        <span class="co-stack-name"><span data-l="en">Daily live streams by 6 coaches</span><span data-l="zh">6 位教练每日直播</span></span>
+        <span class="co-stack-val"><span data-l="en">$997/mo</span><span data-l="zh">$997/月</span></span>
+      </div>
+      <div class="co-stack-row">
+        <span class="co-check">✓</span>
+        <span class="co-stack-name"><span data-l="en">Stage 2 &amp; 3 physical workshops</span><span data-l="zh">第二、三阶段线下实体工作坊</span></span>
+        <span class="co-stack-val">$1,997</span>
+      </div>
+      <div class="co-stack-total">
+        <span class="co-stack-total-l"><span data-l="en">Total value <s>$4,490+</s></span><span data-l="zh">总价值 <s>$4,490+</s></span></span>
+        <span class="co-stack-total-r"><span data-l="en">Today <b>$150</b></span><span data-l="zh">今天只需 <b>$150</b></span></span>
+      </div>
+    </div>
+
+    <!-- gold highlight: credit back -->
+    <div class="co-credit">
+      <span class="co-credit-ic" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.5"></path><path d="m9 11 3 3 8-8"></path></svg>
+      </span>
+      <span class="co-credit-txt">
+        <span data-l="en">You get a <b>$150 FundedXyz credit</b> back after payment — <span class="net">net cost $0</span>. The $150 is simply your commitment to your trading career.</span>
+        <span data-l="zh">付款后你会拿回 <b>$150 FundedXyz 额度</b> — <span class="net">净成本 $0</span>。这 $150 只是你对交易事业的承诺。</span>
+      </span>
+    </div>
+
+    <!-- trust row -->
+    <div class="co-trust">
+      <span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+        <span data-l="en">Secure checkout</span><span data-l="zh">安全结账</span>
+      </span>
+      <span class="sep">·</span>
+      <span><b style="color:#c8cad0;font-weight:700">Stripe</b></span>
+      <span class="sep">·</span>
+      <span><span data-l="en">Voucher never expires</span><span data-l="zh">抵用券永不过期</span></span>
+    </div>
+
+    <!-- testimonials -->
+    <div class="co-social-h"><span data-l="en">Traders already on the path</span><span data-l="zh">已在路上的交易员</span></div>
+    <div class="co-testi">
+      <div class="co-tcard">
+        <img src="assets/img/members/member-Wilson.jpg" alt="Wilson" loading="lazy" width="38" height="38">
+        <div class="co-tcard-b">
+          <div class="co-tcard-stars">★★★★★</div>
+          <p class="co-tcard-q"><span data-l="en">“Clearest path I&rsquo;ve seen. I knew exactly what to do next.”</span><span data-l="zh">“我见过最清晰的路径，每一步都很明确。”</span></p>
+          <div class="co-tcard-n">Wilson · <span data-l="en">Funded Trader</span><span data-l="zh">资金交易员</span></div>
+        </div>
+      </div>
+      <div class="co-tcard">
+        <img src="assets/img/members/member-Cass.jpg" alt="Cass" loading="lazy" width="38" height="38">
+        <div class="co-tcard-b">
+          <div class="co-tcard-stars">★★★★★</div>
+          <p class="co-tcard-q"><span data-l="en">“Best $150 I ever spent — and I got it all back.”</span><span data-l="zh">“我花过最值的 $150，而且全额拿回来了。”</span></p>
+          <div class="co-tcard-n">Cass · <span data-l="en">Stage 3</span><span data-l="zh">第三阶段</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="co-stats">
+      <span><b>2,400+</b> <span data-l="en">traders joined</span><span data-l="zh">交易员已加入</span></span>
+      <span class="sep">·</span>
+      <span><b>$1.2M+</b> <span data-l="en">funded accounts issued</span><span data-l="zh">已发放资金账户</span></span>
+      <span class="sep">·</span>
+      <span><b>4.8★</b> <span data-l="en">rating</span><span data-l="zh">评分</span></span>
+    </div>
+  </section>
+
+  <!-- ============ RIGHT — payment card ============ -->
+  <section class="co-pay">
+    <div class="co-pay-h">
+      <h2><span data-l="en">Payment</span><span data-l="zh">付款</span></h2>
+      <span class="amt">$150</span>
+    </div>
+    <p class="co-pay-sub"><span data-l="en">Trader Career — one-time · USD</span><span data-l="zh">交易员生涯 — 一次性 · 美元</span></p>
+
+    <form id="coForm" novalidate>
+      <div class="co-field">
+        <label for="coEmail"><span data-l="en">Email</span><span data-l="zh">电子邮箱</span></label>
+        <input class="co-input" id="coEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com">
+      </div>
+      <div class="co-field">
+        <label for="coName"><span data-l="en">Full name</span><span data-l="zh">姓名</span></label>
+        <input class="co-input" id="coName" type="text" autocomplete="name" placeholder="David Justin">
+      </div>
+
+      <!-- payment method tabs -->
+      <div class="co-tabs" role="tablist" aria-label="Payment method">
+        <button type="button" class="co-tab" id="tabCard" role="tab" aria-selected="true" aria-controls="paneCard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>
+          <span data-l="en">Card</span><span data-l="zh">银行卡</span>
+        </button>
+        <button type="button" class="co-tab" id="tabFpx" role="tab" aria-selected="false" aria-controls="paneFpx">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V10l7-5 7 5v11"></path><path d="M9 21v-6h6v6"></path></svg>
+          <span>FPX</span>
+        </button>
+      </div>
+
+      <!-- Card pane -->
+      <div class="co-pane is-active" id="paneCard" role="tabpanel" aria-labelledby="tabCard">
+        <div class="co-field">
+          <label for="coCard"><span data-l="en">Card number</span><span data-l="zh">卡号</span></label>
+          <div class="co-cardfield">
+            <input class="co-input" id="coCard" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234">
+            <span class="brands" aria-hidden="true"><span>VISA</span><span>MC</span><span>AMEX</span></span>
+          </div>
+        </div>
+        <div class="co-row2">
+          <div class="co-field">
+            <label for="coExp"><span data-l="en">Expiry</span><span data-l="zh">有效期</span></label>
+            <input class="co-input" id="coExp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY">
+          </div>
+          <div class="co-field">
+            <label for="coCvc">CVC</label>
+            <input class="co-input" id="coCvc" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="123">
+          </div>
+        </div>
+      </div>
+
+      <!-- FPX pane -->
+      <div class="co-pane" id="paneFpx" role="tabpanel" aria-labelledby="tabFpx">
+        <div class="co-field">
+          <label for="coBank"><span data-l="en">Select your bank</span><span data-l="zh">选择你的银行</span></label>
+          <div class="co-select-wrap">
+            <select class="co-input" id="coBank">
+              <option value="" disabled selected hidden data-l-en="Choose a bank…" data-l-zh="选择银行…">Choose a bank…</option>
+              <option>Maybank2u</option>
+              <option>CIMB Clicks</option>
+              <option>Public Bank (PBe)</option>
+              <option>RHB Now</option>
+              <option>Hong Leong Connect</option>
+              <option>AmBank (AmOnline)</option>
+              <option>Bank Islam</option>
+              <option>Affin Bank</option>
+              <option>Alliance Bank</option>
+              <option>Bank Rakyat</option>
+              <option>Bank Muamalat</option>
+              <option>BSN</option>
+              <option>HSBC Bank</option>
+              <option>OCBC Bank</option>
+              <option>Standard Chartered</option>
+              <option>UOB Bank</option>
+            </select>
+          </div>
+        </div>
+        <div class="co-fpx-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+          <span data-l="en">You&rsquo;ll be redirected to your bank&rsquo;s secure login to approve the $150 payment via FPX online banking.</span>
+          <span data-l="zh">你将被跳转到银行的安全登录页面，通过 FPX 网上银行批准 $150 付款。</span>
+        </div>
+      </div>
+
+      <button type="submit" class="co-paybtn" id="coPay">
+        <span data-l="en">Pay $150 — Start My Career</span><span data-l="zh">支付 $150 — 开启我的生涯</span>
+      </button>
+      <p class="co-paymicro">
+        <span data-l="en">Instant access · <b>$150 FundedXyz credit</b> issued after payment</span>
+        <span data-l="zh">即时开通 · 付款后发放 <b>$150 FundedXyz 额度</b></span>
+      </p>
+
+      <div class="co-stripe">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+        <span data-l="en">256-bit encrypted · Powered by <span class="pwr">Stripe</span></span>
+        <span data-l="zh">256 位加密 · 由 <span class="pwr">Stripe</span> 提供支持</span>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<footer class="co-foot">
+  <span>Unity Crypto · Trader Career</span>
+  <span><span data-l="en">Trading involves risk. Participation does not guarantee profit.</span><span data-l="zh">交易有风险，参与不保证盈利。</span></span>
+</footer>
+
+<!-- Mobile sticky pay bar -->
+<div class="co-sticky" aria-hidden="true">
+  <div class="co-sticky-info">
+    <b>$150</b>
+    <span data-l="en">Trader Career</span><span data-l="zh">交易员生涯</span>
+  </div>
+  <button type="button" id="coStickyPay"><span data-l="en">Pay $150</span><span data-l="zh">支付 $150</span></button>
+</div>
+
+<script>
+(function(){
+  var root = document.body;
+
+  /* ---- Language toggle (same mechanism as learning.html) ---- */
+  function setLang(l){
+    root.setAttribute("data-lang", l === "zh" ? "zh" : "en");
+    document.documentElement.setAttribute("lang", l === "zh" ? "zh-Hans" : "en");
+    // swap placeholder text for the bank <option> that carries data-l-*
+    document.querySelectorAll('option[data-l-en]').forEach(function(o){
+      o.textContent = l === "zh" ? o.getAttribute("data-l-zh") : o.getAttribute("data-l-en");
+    });
+  }
+  document.querySelectorAll('.uc-lang button[lang]').forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var isZh = (btn.getAttribute("lang")||"").indexOf("zh") === 0;
+      document.querySelectorAll('.uc-lang button[lang]').forEach(function(b){
+        var same = ((b.getAttribute("lang")||"").indexOf("zh") === 0) === isZh;
+        b.setAttribute("aria-pressed", same ? "true" : "false");
+      });
+      setLang(isZh ? "zh" : "en");
+    });
+  });
+  // honor ?lang=zh deep-link from the paywall CTA
+  try{
+    var qs = new URLSearchParams(location.search);
+    if((qs.get("lang")||"").indexOf("zh") === 0){
+      document.querySelector('.uc-lang button[lang="zh-Hans"]').click();
+    }
+  }catch(e){}
+
+  /* ---- Payment method tabs ---- */
+  var tabs = [{t:"tabCard",p:"paneCard"},{t:"tabFpx",p:"paneFpx"}];
+  tabs.forEach(function(x){
+    document.getElementById(x.t).addEventListener("click", function(){
+      tabs.forEach(function(y){
+        var sel = y.t === x.t;
+        document.getElementById(y.t).setAttribute("aria-selected", sel ? "true":"false");
+        document.getElementById(y.p).classList.toggle("is-active", sel);
+      });
+    });
+  });
+
+  /* ---- Demo pay (no real processing) ---- */
+  function payDemo(){
+    var btn = document.getElementById("coPay");
+    var isZh = root.getAttribute("data-lang") === "zh";
+    btn.disabled = true; btn.style.filter = "brightness(1.08)";
+    btn.textContent = isZh ? "正在处理付款…" : "Processing payment…";
+    setTimeout(function(){
+      btn.textContent = isZh ? "✓ 付款成功 — 正在开通" : "✓ Payment successful — unlocking";
+    }, 1100);
+  }
+  document.getElementById("coForm").addEventListener("submit", function(e){
+    e.preventDefault(); payDemo();
+  });
+  document.getElementById("coStickyPay").addEventListener("click", function(){
+    document.getElementById("coForm").scrollIntoView({behavior:"smooth", block:"center"});
+    payDemo();
+  });
+
+  /* ---- Light input formatting (card/expiry) for realism ---- */
+  var card = document.getElementById("coCard");
+  if(card) card.addEventListener("input", function(){
+    var v = card.value.replace(/\D/g,"").slice(0,16).replace(/(.{4})/g,"$1 ").trim();
+    card.value = v;
+  });
+  var exp = document.getElementById("coExp");
+  if(exp) exp.addEventListener("input", function(){
+    var v = exp.value.replace(/\D/g,"").slice(0,4);
+    if(v.length >= 3) v = v.slice(0,2) + " / " + v.slice(2);
+    exp.value = v;
+  });
+})();
+</script>
+</body>
+</html>
