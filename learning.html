@@ -175,11 +175,13 @@
 }
 .pw-tcard-top{ display:flex; align-items:center; gap:9px; }
 .pw-avatar{
-  flex:0 0 auto; width:30px; height:30px; border-radius:999px;
+  flex:0 0 auto; width:38px; height:38px; border-radius:999px;
   background:var(--pw-gold);
   color:#131416; font-size:12px; font-weight:700;
   display:flex; align-items:center; justify-content:center;
+  overflow:hidden; border:1px solid #edc44366;
 }
+.pw-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
 .pw-tcard-name{ font-size:12.5px; font-weight:600; color:var(--pw-text); line-height:1.2; }
 .pw-tcard-stars{ font-size:10px; color:var(--pw-gold); letter-spacing:.06em; margin-top:2px; }
 .pw-tcard-q{ font-size:12.5px; line-height:1.5; color:var(--pw-muted); margin:0; }
@@ -277,7 +279,7 @@
     <div class="pw-video-wrap">
       <div class="pw-video">
         <span class="pw-video-play" id="pwVideoPlay" aria-label="Play closing video"></span>
-        <span class="pw-video-tag">Unity Fund Challenge · Trader Career</span>
+        <span class="pw-video-tag"><span data-l="en">Unity Fund Challenge · Trader Career</span><span data-l="zh">Unity Fund Challenge · 交易员生涯</span></span>
       </div>
     </div>
 
@@ -336,32 +338,32 @@
         </p>
       </div>
 
-      <!-- 5) SOCIAL PROOF — PLACEHOLDER names/results, swap with real testimonials -->
+      <!-- 5) SOCIAL PROOF — real UFC members (same photos/quotes as ufc.unitycrypto.com landing) -->
       <div class="pw-social-h"><span data-l="en">Traders already on the path</span><span data-l="zh">已在路上的交易员</span></div>
       <div class="pw-cards">
-        <!-- PLACEHOLDER testimonial 1 -->
+        <!-- Alan Ooi — landing testimonial -->
         <div class="pw-tcard">
           <div class="pw-tcard-top">
-            <span class="pw-avatar">WJ</span>
-            <div><div class="pw-tcard-name">Wei Jie L.</div><div class="pw-tcard-stars">★★★★★</div></div>
+            <span class="pw-avatar"><img src="assets/img/members/member-AlanOoi.jpg" alt="Alan Ooi" loading="lazy"></span>
+            <div><div class="pw-tcard-name">Alan Ooi</div><div class="pw-tcard-stars">★★★★★</div></div>
           </div>
-          <p class="pw-tcard-q"><span data-l="en">“Passed my first challenge in 3 weeks.”</span><span data-l="zh">“3 周内通过了我的第一个挑战。”</span></p>
+          <p class="pw-tcard-q"><span data-l="en">“After systematic reviews, my trading direction is so much clearer.”</span><span data-l="zh">“系统化复盘之后，我的交易方向清楚多了。”</span></p>
         </div>
-        <!-- PLACEHOLDER testimonial 2 -->
+        <!-- Cass — landing testimonial -->
         <div class="pw-tcard">
           <div class="pw-tcard-top">
-            <span class="pw-avatar">SN</span>
-            <div><div class="pw-tcard-name">Siti N.</div><div class="pw-tcard-stars">★★★★★</div></div>
+            <span class="pw-avatar"><img src="assets/img/members/member-Cass.jpg" alt="Cass" loading="lazy"></span>
+            <div><div class="pw-tcard-name">Cass</div><div class="pw-tcard-stars">★★★★★</div></div>
           </div>
-          <p class="pw-tcard-q"><span data-l="en">“The workshops fixed how I manage risk.”</span><span data-l="zh">“工作坊彻底改变了我的风险管理。”</span></p>
+          <p class="pw-tcard-q"><span data-l="en">“The offline workshop was the first time I truly understood risk management.”</span><span data-l="zh">“线下工作坊让我第一次真正看懂风险管理。”</span></p>
         </div>
-        <!-- PLACEHOLDER testimonial 3 -->
+        <!-- Wilson — landing testimonial -->
         <div class="pw-tcard">
           <div class="pw-tcard-top">
-            <span class="pw-avatar">CK</span>
-            <div><div class="pw-tcard-name">Chen K.M.</div><div class="pw-tcard-stars">★★★★★</div></div>
+            <span class="pw-avatar"><img src="assets/img/members/member-Wilson.jpg" alt="Wilson" loading="lazy"></span>
+            <div><div class="pw-tcard-name">Wilson</div><div class="pw-tcard-stars">★★★★★</div></div>
           </div>
-          <p class="pw-tcard-q"><span data-l="en">“Went from zero to a funded account.”</span><span data-l="zh">“从零做到拥有资金账户。”</span></p>
+          <p class="pw-tcard-q"><span data-l="en">“From zero base to steady learning — the growth is visible.”</span><span data-l="zh">“从零基础到有节奏地学习，成长看得见。”</span></p>
         </div>
       </div>
       <!-- PLACEHOLDER stats — swap with real numbers -->
