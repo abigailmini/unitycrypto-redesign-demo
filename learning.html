@@ -63,7 +63,7 @@
 .pw-video-wrap{ padding:16px 18px 0; }
 .pw-video{
   position:relative; width:100%; aspect-ratio:16/9;
-  background:#06080d url("assets/video_poster.png") center/cover no-repeat;
+  background:#06080d url("https://i.ytimg.com/vi/02hdCPKc50s/maxresdefault.jpg") center/cover no-repeat;
   border-radius:12px; overflow:hidden;
   border:1px solid var(--pw-line);
 }
@@ -71,6 +71,8 @@
   content:""; position:absolute; inset:0;
   background:linear-gradient(180deg, #0b0c0e33 0%, #0b0c0e00 42%, #0b0c0e99 100%);
 }
+.pw-video.playing::after{ display:none; }
+.pw-video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .pw-video-play{
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
   width:60px; height:60px; border-radius:999px; z-index:2;
@@ -314,7 +316,7 @@
 
     <!-- 1) Closing video — the hook (tight 16:9) -->
     <div class="pw-video-wrap">
-      <div class="pw-video">
+      <div class="pw-video" id="pwVideo">
         <span class="pw-video-play" id="pwVideoPlay" aria-label="Play closing video"></span>
         <span class="pw-video-tag"><span data-l="en">Unity Fund Challenge · Trader Career</span><span data-l="zh">Unity Fund Challenge · 交易员生涯</span></span>
       </div>
@@ -540,6 +542,18 @@
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playCard(card); }
     });
   });
+
+  // 2b) Closing video — real selling video (David, 2026-10-05)
+  var pwPlayBtn = document.getElementById("pwVideoPlay");
+  if (pwPlayBtn) {
+    pwPlayBtn.addEventListener("click", function (e) {
+      e.stopPropagation(); e.preventDefault();
+      var v = document.getElementById("pwVideo");
+      if (!v || v.classList.contains("playing")) return;
+      v.classList.add("playing");
+      v.innerHTML = '<iframe src="https://www.youtube.com/embed/02hdCPKc50s?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Trader Career Video"></iframe>';
+    });
+  }
 
   // 3) Open paywall when clicking any Trader Career stage / locked / buy item.
   // Also neutralize internal navigation so the static demo never leaves the page.
