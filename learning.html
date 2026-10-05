@@ -1,105 +1,219 @@
 <html lang="en" data-scroll-behavior="smooth" class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable" data-viewport="desktop"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="preload" as="image" href="assets/img/unity-fund-challenge-theme.svg"><link rel="stylesheet" href="assets/css/0ijq6fzj~vh0y.css" data-precedence="next"><link rel="stylesheet" href="assets/css/0p.c~.zvyluvc.css" data-precedence="next"><link rel="stylesheet" href="assets/css/0wealldvt6_34.css" data-precedence="next"><link rel="stylesheet" href="assets/css/0s_etv7p4q~q-.css" data-precedence="next"><meta name="theme-color" content="#0b0b0e"><title>UFC</title><meta name="description" content="Unity Fund Challenge user dashboard"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="UFC"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/png" href="assets/img/icon.png"><link rel="apple-touch-icon" href="assets/img/icon.png"><meta name="next-size-adjust" content=""><style id="pw-styles">
-/* ===== Trader Career paywall (demo) — inherits live design tokens ===== */
+/* ===== Trader Career paywall — premium sales popup (redesign) — inherits live design tokens ===== */
 .pw-overlay{
   position:fixed; inset:0; z-index:99999;
   display:flex; align-items:center; justify-content:center;
-  padding:24px;
-  background:rgba(5,7,11,.72);
-  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  padding:20px;
+  background:rgba(4,6,10,.78);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
   opacity:0; visibility:hidden; transition:opacity .28s ease, visibility .28s ease;
 }
 .pw-overlay.is-open{ opacity:1; visibility:visible; }
 
 .pw-modal{
-  position:relative; width:100%; max-width:540px;
-  background:var(--card,#11141cd9);
-  border:1px solid var(--card-border-strong,#ffffff1a);
-  border-radius:var(--radius-xl,16px);
-  box-shadow:var(--shadow-modal,0 24px 80px #0009), var(--glow-gold-lg,0 0 40px #f0b90b2e);
-  overflow:hidden;
-  transform:translateY(16px) scale(.98);
-  transition:transform .3s cubic-bezier(.2,.8,.2,1);
+  position:relative; width:100%; max-width:600px; max-height:92vh; overflow-y:auto;
+  background:
+    radial-gradient(130% 80% at 50% -10%, #f0b90b12, transparent 55%),
+    linear-gradient(180deg,#12151dff 0%, #0c0f16ff 100%);
+  border:1px solid rgba(240,185,11,.26);
+  border-radius:20px;
+  box-shadow:0 30px 90px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.03), 0 0 60px #f0b90b1a;
+  overflow-x:hidden;
+  transform:translateY(18px) scale(.975);
+  transition:transform .32s cubic-bezier(.2,.8,.2,1);
   font-family:var(--font-geist-sans,inherit);
+  -webkit-overflow-scrolling:touch;
 }
 .pw-overlay.is-open .pw-modal{ transform:translateY(0) scale(1); }
+.pw-modal::-webkit-scrollbar{ width:8px; }
+.pw-modal::-webkit-scrollbar-thumb{ background:#ffffff1a; border-radius:8px; }
 
 .pw-close{
-  position:absolute; top:12px; right:12px; z-index:3;
+  position:absolute; top:14px; right:14px; z-index:5;
   width:34px; height:34px; border-radius:999px;
   display:flex; align-items:center; justify-content:center;
-  background:rgba(0,0,0,.45); color:#fff; border:1px solid #ffffff2a;
+  background:rgba(0,0,0,.5); color:#fff; border:1px solid #ffffff2a;
   font-size:20px; line-height:1; cursor:pointer; transition:background .2s,transform .2s;
 }
-.pw-close:hover{ background:rgba(0,0,0,.7); transform:scale(1.06); }
+.pw-close:hover{ background:rgba(0,0,0,.75); transform:rotate(90deg); }
 
-/* 16:9 closing video placeholder */
+/* 16:9 closing video — the hook, kept tight */
+.pw-video-wrap{ padding:16px 16px 0; }
 .pw-video{
   position:relative; width:100%; aspect-ratio:16/9;
   background:#06080d url("assets/video_poster.png") center/cover no-repeat;
-  border-bottom:1px solid var(--card-border,#ffffff0f);
+  border-radius:14px; overflow:hidden;
+  border:1px solid rgba(240,185,11,.22);
 }
 .pw-video::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, #06080d55 0%, #06080d00 35%, #06080daa 100%);
+  background:linear-gradient(180deg, #06080d33 0%, #06080d00 40%, #06080d99 100%);
 }
 .pw-video-play{
   position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:72px; height:72px; border-radius:999px; z-index:2;
+  width:62px; height:62px; border-radius:999px; z-index:2;
   background:var(--grad-gold-cta,linear-gradient(135deg,#f0b90b,#d4a20a));
   display:flex; align-items:center; justify-content:center;
   box-shadow:var(--glow-gold,0 0 18px #f0b90b40);
   cursor:pointer; transition:transform .2s;
 }
-.pw-video-play:hover{ transform:translate(-50%,-50%) scale(1.07); }
+.pw-video-play:hover{ transform:translate(-50%,-50%) scale(1.08); }
 .pw-video-play::before{
-  content:""; margin-left:5px;
-  border-style:solid; border-width:13px 0 13px 22px;
+  content:""; margin-left:4px;
+  border-style:solid; border-width:11px 0 11px 19px;
   border-color:transparent transparent transparent #0b0e14;
 }
 .pw-video-tag{
-  position:absolute; left:16px; bottom:14px; z-index:2;
-  font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-  color:#f1f5f9; opacity:.92; font-weight:600;
+  position:absolute; left:14px; bottom:12px; z-index:2;
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:#f1f5f9; opacity:.9; font-weight:700;
 }
 
-.pw-body{ padding:26px 28px 28px; }
+.pw-body{ padding:22px 26px 26px; }
+@media(min-width:561px){ .pw-body{ padding:24px 32px 30px; } }
+
 .pw-kicker{
   display:inline-block; margin-bottom:14px;
-  padding:7px 13px; border-radius:999px;
+  padding:6px 13px; border-radius:999px;
   background:var(--gold-soft,#f0b90b1f);
-  border:1px solid var(--gold,#f0b90b);
+  border:1px solid rgba(240,185,11,.55);
   color:var(--gold-bright,#f5d03a);
-  font-size:12.5px; font-weight:600; line-height:1.35; letter-spacing:.01em;
+  font-size:11px; font-weight:700; line-height:1.3; letter-spacing:.06em; text-transform:uppercase;
 }
 .pw-title{
-  margin:4px 0 10px; font-size:26px; line-height:1.18; font-weight:800;
-  color:var(--text,#f1f5f9); letter-spacing:-.01em;
+  margin:4px 0 20px; font-size:27px; line-height:1.2; font-weight:800;
+  color:var(--text,#f1f5f9); letter-spacing:-.015em;
 }
-.pw-sub{
-  margin:0 0 22px; font-size:15px; line-height:1.55;
-  color:var(--text-2,#94a3b8);
+.pw-title .pw-hl{
+  background:linear-gradient(120deg,#f5d03a,#f0b90b 60%,#d4a20a);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#f0b90b;
 }
-.pw-sub b{ color:var(--text,#f1f5f9); font-weight:600; }
 
-.pw-actions{ display:flex; flex-direction:column; gap:12px; }
-.pw-cta{
-  width:100%; min-height:52px; border:none; cursor:pointer;
-  border-radius:var(--radius-md,10px);
+/* ===== VALUE STACK ===== */
+.pw-stack{
+  margin:0 0 18px; padding:16px 18px;
+  background:#ffffff05; border:1px solid #ffffff12; border-radius:14px;
+}
+.pw-stack-h{
+  font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--text-3,#94a3b8); margin:0 0 12px;
+}
+.pw-stack-row{
+  display:flex; align-items:center; gap:10px;
+  padding:9px 0; border-bottom:1px solid #ffffff0a;
+  font-size:14.5px; color:var(--text,#f1f5f9);
+}
+.pw-stack-row:last-of-type{ border-bottom:none; }
+.pw-stack-check{
+  flex:0 0 auto; width:19px; height:19px; border-radius:999px;
+  background:var(--gold-soft,#f0b90b1f); border:1px solid rgba(240,185,11,.5);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold-bright,#f5d03a); font-size:11px; font-weight:900;
+}
+.pw-stack-name{ flex:1 1 auto; line-height:1.35; }
+.pw-stack-val{
+  flex:0 0 auto; font-size:13px; font-weight:700; color:var(--text-2,#94a3b8);
+}
+.pw-stack-val.inc{ color:var(--gold-bright,#f5d03a); }
+.pw-stack-total{
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-top:12px; padding-top:13px; border-top:1px dashed #ffffff20;
+}
+.pw-stack-total-l{ font-size:13.5px; color:var(--text-2,#94a3b8); }
+.pw-stack-total-l s{ color:#6b7280; }
+.pw-stack-total-r{ font-size:15px; font-weight:800; color:var(--text,#f1f5f9); }
+.pw-stack-total-r b{ color:var(--gold-bright,#f5d03a); font-size:19px; }
+
+/* ===== KILLER REFRAME ===== */
+.pw-reframe{
+  position:relative; margin:0 0 20px; padding:16px 18px;
+  background:linear-gradient(135deg,#f0b90b1c, #f0b90b08);
+  border:1px solid rgba(240,185,11,.5); border-radius:14px;
+  box-shadow:0 0 30px #f0b90b12;
+}
+.pw-reframe-badge{
+  display:inline-block; margin-bottom:8px; padding:3px 10px; border-radius:999px;
+  background:var(--grad-gold-cta,linear-gradient(135deg,#f0b90b,#d4a20a)); color:#0b0e14;
+  font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+}
+.pw-reframe p{ margin:0; font-size:14px; line-height:1.55; color:var(--text,#f1f5f9); }
+.pw-reframe b{ color:var(--gold-bright,#f5d03a); font-weight:800; }
+.pw-reframe .pw-net{ font-size:15px; }
+
+/* ===== SOCIAL PROOF ===== */
+.pw-social-h{
+  font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--text-3,#94a3b8); margin:0 0 11px;
+}
+.pw-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:0 0 14px; }
+@media(max-width:520px){ .pw-cards{ grid-template-columns:1fr; } }
+.pw-tcard{
+  padding:12px 12px 13px; background:#ffffff06; border:1px solid #ffffff12;
+  border-radius:12px; display:flex; flex-direction:column; gap:8px;
+}
+.pw-tcard-top{ display:flex; align-items:center; gap:8px; }
+.pw-avatar{
+  flex:0 0 auto; width:30px; height:30px; border-radius:999px;
   background:var(--grad-gold-cta,linear-gradient(135deg,#f0b90b,#d4a20a));
-  color:#0b0e14; font-size:16px; font-weight:800; letter-spacing:.01em;
-  box-shadow:var(--glow-gold,0 0 18px #f0b90b40);
+  color:#0b0e14; font-size:12px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+}
+.pw-tcard-name{ font-size:12.5px; font-weight:700; color:var(--text,#f1f5f9); line-height:1.2; }
+.pw-tcard-stars{ font-size:10px; color:var(--gold-bright,#f5d03a); letter-spacing:.06em; }
+.pw-tcard-q{ font-size:12.5px; line-height:1.45; color:var(--text-2,#cbd3df); margin:0; }
+.pw-stats{
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 14px;
+  margin:0 0 20px; padding:11px 14px; text-align:center;
+  background:#ffffff05; border:1px solid #ffffff10; border-radius:12px;
+}
+.pw-stats span{ font-size:12.5px; color:var(--text-2,#94a3b8); }
+.pw-stats b{ color:var(--text,#f1f5f9); font-weight:800; }
+.pw-stats .pw-dot{ color:#ffffff33; }
+
+/* ===== AUTHORITY ===== */
+.pw-authority{
+  display:flex; align-items:center; gap:10px; margin:0 0 20px;
+  padding:12px 14px; background:#ffffff05; border:1px solid #ffffff10; border-radius:12px;
+}
+.pw-authority svg{ flex:0 0 auto; color:var(--gold-bright,#f5d03a); }
+.pw-authority p{ margin:0; font-size:12.5px; line-height:1.5; color:var(--text-2,#cbd3df); }
+.pw-authority b{ color:var(--text,#f1f5f9); font-weight:700; }
+
+/* ===== CTA ===== */
+.pw-actions{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+.pw-cta{
+  width:100%; min-height:56px; border:none; cursor:pointer;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f5d03a 0%, #f0b90b 50%, #d4a20a 100%);
+  color:#0b0e14; font-size:17px; font-weight:800; letter-spacing:.01em;
+  box-shadow:0 10px 26px #f0b90b3a, 0 0 0 1px #f0b90b55 inset;
   transition:transform .18s, box-shadow .18s, filter .18s;
 }
-.pw-cta:hover{ transform:translateY(-1px); filter:brightness(1.05); box-shadow:var(--glow-gold-lg,0 0 40px #f0b90b2e); }
+.pw-cta:hover{ transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 14px 34px #f0b90b55, 0 0 0 1px #f0b90b99 inset; }
 .pw-cta:active{ transform:translateY(0); }
-.pw-later{
-  width:100%; min-height:44px; cursor:pointer;
-  background:transparent; border:1px solid var(--card-border-strong,#ffffff1a);
-  border-radius:var(--radius-md,10px);
-  color:var(--text-2,#94a3b8); font-size:14.5px; font-weight:600;
-  transition:border-color .2s,color .2s;
+.pw-micro{ margin:2px 0 0; font-size:12px; color:var(--text-2,#94a3b8); text-align:center; }
+.pw-micro b{ color:var(--gold-bright,#f5d03a); font-weight:700; }
+.pw-risk{
+  margin:8px 0 2px; font-size:11.5px; color:var(--text-3,#8b93a1); text-align:center;
+  display:flex; align-items:center; justify-content:center; gap:6px;
 }
-.pw-later:hover{ color:var(--text,#f1f5f9); border-color:#ffffff33; }
+.pw-risk svg{ color:#22c55e; flex:0 0 auto; }
+.pw-later{
+  margin-top:10px; background:none; border:none; cursor:pointer;
+  color:var(--text-3,#8b93a1); font-size:13px; font-weight:500;
+  text-decoration:underline; text-underline-offset:3px; text-decoration-color:#ffffff33;
+  transition:color .2s;
+}
+.pw-later:hover{ color:var(--text-2,#cbd3df); }
+
+/* language visibility */
+.pw-overlay[data-lang="en"] [data-l="zh"]{ display:none; }
+.pw-overlay[data-lang="zh"] [data-l="en"]{ display:none; }
+
+@media (max-width:560px){
+  .pw-title{ font-size:22px; }
+  .pw-video-wrap{ padding:12px 12px 0; }
+}
 
 /* main-page static video poster (replaces mux-player) */
 .pw-livevideo{
@@ -130,20 +244,137 @@
      <img src="assets/video_poster.png" alt="Trader Career intro video" />
      <span class="pw-livevideo-play" aria-hidden="true"></span>
    </div></div></section><section class="uc-panel uc-panel--gold ln-roadmap" id="learning-roadmap" aria-labelledby="ln-roadmap-title"><div class="uc-section-top ln-roadmap-head"><div><div class="uc-eyebrow">The bigger picture</div><h2 id="ln-roadmap-title">Your growth roadmap</h2></div></div><div class="ln-road" aria-hidden="true"><div class="ln-road-node is-locked" style="--ln-fill:0%"><span class="ln-road-dot"><svg width="12" height="13" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4.6V3.4a3 3 0 0 1 6 0v1.2"></path><rect x="0.8" y="4.6" width="8.4" height="6.8" rx="1.4"></rect></svg></span><span class="ln-road-line"><i></i></span></div><div class="ln-road-node is-locked" style="--ln-fill:0%"><span class="ln-road-dot"><svg width="12" height="13" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4.6V3.4a3 3 0 0 1 6 0v1.2"></path><rect x="0.8" y="4.6" width="8.4" height="6.8" rx="1.4"></rect></svg></span><span class="ln-road-line"><i></i></span></div><div class="ln-road-node is-locked" style="--ln-fill:0%"><span class="ln-road-dot"><svg width="12" height="13" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4.6V3.4a3 3 0 0 1 6 0v1.2"></path><rect x="0.8" y="4.6" width="8.4" height="6.8" rx="1.4"></rect></svg></span><span class="ln-road-line"><i></i></span></div><div class="ln-road-node is-locked" style="--ln-fill:0%"><span class="ln-road-dot"><svg width="12" height="13" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 4.6V3.4a3 3 0 0 1 6 0v1.2"></path><rect x="0.8" y="4.6" width="8.4" height="6.8" rx="1.4"></rect></svg></span><span class="ln-road-line"><i></i></span></div></div><div class="ln-strip"><button type="button" class="ln-tile is-locked" aria-expanded="false" aria-controls="career-stage-panel"><span class="ln-tile-head"><span class="ln-tile-num">01</span><span class="ln-tile-status"><span aria-hidden="true">🔒 </span>Locked</span><svg class="ln-tile-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span><span class="ln-tile-name">Discover</span><span class="ln-tile-bar"><span class="ln-tile-fill" style="width:0%"></span></span><span class="ln-tile-lessons">0/5 lessons</span><span class="ln-tile-perk"><span class="ln-tile-dot" aria-hidden="true"></span>E-Learning</span></button><button type="button" class="ln-tile is-locked" aria-expanded="false" aria-controls="career-stage-panel"><span class="ln-tile-head"><span class="ln-tile-num">02</span><span class="ln-tile-status"><span aria-hidden="true">🔒 </span>Locked</span><svg class="ln-tile-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span><span class="ln-tile-name">Build</span><span class="ln-tile-bar"><span class="ln-tile-fill" style="width:0%"></span></span><span class="ln-tile-lessons">0/8 lessons</span><span class="ln-tile-perk"><span class="ln-tile-dot" aria-hidden="true"></span>Workshop</span></button><button type="button" class="ln-tile is-locked" aria-expanded="false" aria-controls="career-stage-panel"><span class="ln-tile-head"><span class="ln-tile-num">03</span><span class="ln-tile-status"><span aria-hidden="true">🔒 </span>Locked</span><svg class="ln-tile-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span><span class="ln-tile-name">Achieve</span><span class="ln-tile-bar"><span class="ln-tile-fill" style="width:0%"></span></span><span class="ln-tile-lessons">Locked</span><span class="ln-tile-perk"><span class="ln-tile-dot" aria-hidden="true"></span>Private Event</span></button><button type="button" class="ln-tile is-locked" aria-expanded="false" aria-controls="career-stage-panel"><span class="ln-tile-head"><span class="ln-tile-num">04</span><span class="ln-tile-status"><span aria-hidden="true">🔒 </span>Locked</span><svg class="ln-tile-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span><span class="ln-tile-name">Legacy</span><span class="ln-tile-bar"><span class="ln-tile-fill" style="width:0%"></span></span><span class="ln-tile-lessons">Locked</span><span class="ln-tile-perk"><span class="ln-tile-dot" aria-hidden="true"></span>Certified Trader</span></button></div><details class="ln-path" open=""><summary>A clear next step at every stage.</summary><ol><li><b>Discover:</b> <!-- -->Complete the foundation lessons and Discover Checklist.</li><li><b>Build:</b> <!-- -->Build your approach through learning, workshops and practice.</li><li><b>Achieve:</b> <!-- -->The current platform requires a first Profit Split to enter this stage.</li><li><b>Legacy:</b> <!-- -->The current platform links cumulative 10% X Mode Profit with a Fund Add-on.</li></ol><p class="uc-footnote">Based on the current learning page. Official platform and provider rules apply.</p></details></section><section class="uc-panel ln-cards"><p class="uc-eyebrow ln-cards-title">What comes after</p><div class="ln-cards-grid"><article class="ln-card"><div class="ln-card-row ln-card-head"><span class="ln-card-num">1</span><span class="ln-card-stage">Stage 1</span></div><h3 class="ln-card-row ln-card-title">Discover</h3><p class="ln-card-row ln-card-blurb">This is where you begin. Through videos and documents, learn how the platform and the trading process work, along with the basic rules, and build a sound view of trading.</p><div class="ln-card-row ln-card-perk-wrap"><div class="ln-card-perk"><div class="ln-card-perk-name"><span class="ln-dot" aria-hidden="true"></span>E-Learning</div><p>A full library of video lessons, to learn wherever you are.</p></div></div><div class="ln-card-row ln-card-topics"><p class="uc-eyebrow">What you will learn</p><ul class="ln-topics" role="list"><li>Understand the platform and the trading process</li><li>Learn the basic rules and how contracts work</li><li>Build a sound approach to trading</li></ul></div><div class="ln-card-row ln-card-gate"></div></article><article class="ln-card"><div class="ln-card-row ln-card-head"><span class="ln-card-num">2</span><span class="ln-card-stage">Stage 2</span></div><h3 class="ln-card-row ln-card-title">Build</h3><p class="ln-card-row ln-card-blurb">Start studying trading in a structured way, make good use of the available trading tools, and build a trading plan, risk management and discipline. This is also the stage where you begin turning knowledge into practical trading ability.</p><div class="ln-card-row ln-card-perk-wrap"><div class="ln-card-perk"><div class="ln-card-perk-name"><span class="ln-dot" aria-hidden="true"></span>Workshop</div><p>Coach-led online workshops with live-trade walkthroughs and Q&amp;A.</p></div></div><div class="ln-card-row ln-card-topics"><p class="uc-eyebrow">What you will learn</p><ul class="ln-topics" role="list"><li>Study trading lessons in a structured way</li><li>Make good use of trading tools</li><li>Build a trading plan, risk management and discipline</li></ul></div><div class="ln-card-row ln-card-gate"><div class="ln-gate-label"><span aria-hidden="true">🔒 </span>How to enter Build?</div><div class="ln-gate-name">Complete every Discover Checklist</div><p class="ln-gate-why">Once the fundamentals are confirmed, you can move on to Build.</p></div></article><article class="ln-card"><div class="ln-card-row ln-card-head"><span class="ln-card-num">3</span><span class="ln-card-stage">Stage 3</span></div><h3 class="ln-card-row ln-card-title">Achieve</h3><p class="ln-card-row ln-card-blurb">Achieve is about more than making a profit. A single win can come from the market offering an opportunity, but what matters is managing capital and controlling risk consistently, and producing steady results. That is real trading ability.</p><div class="ln-card-row ln-card-perk-wrap"><div class="ln-card-perk"><div class="ln-card-perk-name"><span class="ln-dot" aria-hidden="true"></span>Private Event</div><p>An invitation to offline private events, alongside traders who have earned profits.</p></div></div><div class="ln-card-row ln-card-topics"><p class="uc-eyebrow">What you will learn</p><ul class="ln-topics" role="list"><li>Manage capital consistently</li><li>Keep risk under steady control</li><li>Produce steady results, not one-off gains</li></ul></div><div class="ln-card-row ln-card-gate"><div class="ln-gate-label"><span aria-hidden="true">🔒 </span>How to enter Achieve?</div><div class="ln-gate-name">Complete your first Profit Split</div><p class="ln-gate-why">It shows you have applied what you learned in live trading and begun to produce real results.</p></div></article><article class="ln-card"><div class="ln-card-row ln-card-head"><span class="ln-card-num">4</span><span class="ln-card-stage">Stage 4</span></div><h3 class="ln-card-row ln-card-title">Legacy</h3><p class="ln-card-row ln-card-blurb">Legacy is the goal most worth pursuing for every trader. Each Fund Add-on shows your ability has been proven once again. Real Legacy is not about how much you make at once, but about continually pushing past your limits and becoming a better trader.</p><div class="ln-card-row ln-card-perk-wrap"><div class="ln-card-perk"><div class="ln-card-perk-name"><span class="ln-dot" aria-hidden="true"></span>Certified Trader</div><p>Earn Certified Trader recognition and your own Trader Career Profile.</p></div></div><div class="ln-card-row ln-card-topics"><p class="uc-eyebrow">What you will learn</p><ul class="ln-topics" role="list"><li>Keep pushing yourself to become a better trader</li><li>Every Fund Add-on is proof of your ability</li><li>Have a Trader Career Profile of your own</li></ul></div><div class="ln-card-row ln-card-gate"><div class="ln-gate-label"><span aria-hidden="true">🔒 </span>How to enter Legacy?</div><div class="ln-gate-name">Reach 10% cumulative Profit on X Mode</div><p class="ln-gate-why">You then receive a Fund Add-on that increases your account funds by 20%. For example, USD25,000 is upgraded to USD30,000.</p></div></article></div></section><section class="uc-paper ln-lock" aria-labelledby="ln-lock-title"><div class="ln-lock-main"><div class="ln-lock-icon" aria-hidden="true">🔒</div><h2 id="ln-lock-title">Buy any X Mode account to unlock all four stages</h2><p>Lessons, workshops, private events and certification all come with your X Mode account. We keep checking your submitted FundedXyz UID against the purchase list; approval usually takes within an hour, after which this page unlocks automatically and you are notified.</p><p class="ln-lock-milestone">Purchase any X Mode account</p><a href="https://app.fundedxyz.com/register?referral=UFC931" target="_blank" rel="noopener noreferrer" class="uc-btn uc-btn--dark">Buy X Mode ↗</a></div><div class="ln-lock-guide"><div class="uc-eyebrow">Start your journey</div><h3>Start your Trader Career</h3><p>Understand how to take part, then choose your next step.</p><ol><li>Watch the free introduction to courses, practice and community support.</li><li>Review the current X Mode requirements, fees and rules before deciding to participate.</li><li>Already participating? Submit your FundedXYZ UID on the accounts page for verification.<!-- --> <a class="uc-link" href="/accounts">My accounts →</a></li></ol><p class="ln-lock-note">Course access and career stages are separate. Verification may unlock eligible content; progression still depends on each stage's requirements.</p></div></section><footer class="uc-footer"><span>Unity Crypto · Trader Career</span><span>Trading involves risk. Participation does not guarantee profit.</span></footer></main><!--$--><!--/$--><!--/$--></div></div><div class="sh-backdrop" data-open="false" aria-hidden="true"></div><aside id="sh-menu-sheet" class="sh-menu" data-open="false" role="dialog" aria-modal="true" aria-label="Menu" tabindex="-1" inert=""><div class="sh-menu-head"><span class="uc-eyebrow">Menu</span><button type="button" class="sh-menu-close" aria-label="Close menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div><div class="sh-menu-body"><div class="sh-menu-member"><!--$--><a class="sh-member" href="/profile"><span class="sh-avatar" aria-hidden="true">D</span><span class="sh-member-text"><strong>David Yag Mini</strong></span></a><!--/$--></div><div class="sh-menu-lang"><span>Language</span><div class="uc-lang" role="group" aria-label="Language / 语言"><button type="button" lang="en" aria-pressed="true">EN</button><button type="button" lang="zh-Hans" aria-pressed="false">中文</button></div></div><nav class="sh-menu-group" aria-label="Account"><div class="sh-menu-eyebrow">Account</div><a class="sh-menu-link" href="/accounts"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7a2 2 0 0 1 2-2h11v4"></path><path d="M4 7v11a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H6a2 2 0 0 1-2-2z"></path><circle cx="16" cy="14.5" r="1" fill="currentColor"></circle></svg></span><span class="sh-menu-link-label">My Accounts</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a><a class="sh-menu-link" href="/withdrawals"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 20h16"></path></svg></span><span class="sh-menu-link-label">Withdrawals</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a><a class="sh-menu-link" href="/settings"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg></span><span class="sh-menu-link-label">Settings</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a></nav><nav class="sh-menu-group" aria-label="Explore"><div class="sh-menu-eyebrow">Explore</div><a class="sh-menu-link" href="/brokers"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg></span><span class="sh-menu-link-label">Register &amp; Earn</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a><a class="sh-menu-link" href="/achievements"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2 21 7v10l-9 5-9-5V7z"></path></svg></span><span class="sh-menu-link-label">Achievements</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a><a class="sh-menu-link" href="/leaderboard"><span class="sh-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h12M4 18h8"></path></svg></span><span class="sh-menu-link-label">Leaderboard</span><span class="sh-menu-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"></path></svg></span></a></nav></div></aside><nav class="sh-tabbar" aria-label="Main navigation"><a class="sh-tab" aria-label="Overview" href="/"><span class="sh-tab-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12 12 3l9 9"></path><path d="M5 10v10h14V10"></path></svg></span></a><a class="sh-tab" aria-label="Learning" aria-current="page" href="/learning"><span class="sh-tab-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path><path d="M22 9v5"></path></svg></span></a><a class="sh-tab" aria-label="Trader Gene" href="/gene"><span class="sh-tab-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3c0 4 10 6 10 10s-10 4-10 8"></path><path d="M17 3c0 4-10 6-10 10s10 4 10 8"></path><path d="M9 6h6M8.5 9.5h7M8.5 14.5h7M9 18h6"></path></svg></span></a><a class="sh-tab" aria-label="Community" href="/events"><span class="sh-tab-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"></path><path d="M18 14.3c2 .7 3.5 2.6 3.5 5.7"></path></svg></span></a><a class="sh-tab" aria-label="Tools" href="/tools"><span class="sh-tab-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span></a><a class="sh-tab sh-tab--profile" aria-label="Profile" href="/profile"><!--$--><span class="sh-avatar" aria-hidden="true">D</span><!--/$--></a></nav><div class="sh-backdrop" data-open="false" aria-hidden="true"></div><div id="sh-submit-sheet" class="sh-action" data-open="false" role="dialog" aria-modal="true" aria-labelledby="sh-submit-title" tabindex="-1" inert=""><div class="sh-action-group"><h2 id="sh-submit-title" class="sh-action-title">Submit</h2><button type="button" class="sh-action-row"><span class="sh-action-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7a2 2 0 0 1 2-2h11v4"></path><path d="M4 7v11a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H6a2 2 0 0 1-2-2z"></path><circle cx="16" cy="14.5" r="1" fill="currentColor"></circle></svg></span>Submit UID</button><button type="button" class="sh-action-row"><span class="sh-action-ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 20h16"></path></svg></span>Record withdrawal</button></div><button type="button" class="sh-action-cancel">Cancel</button></div></div><next-route-announcer style="position: absolute;"></next-route-announcer><!-- ===== Trader Career paywall (demo popup) ===== -->
-<div class="pw-overlay" id="pwOverlay" role="dialog" aria-modal="true" aria-labelledby="pwTitle" aria-hidden="true">
+<div class="pw-overlay" id="pwOverlay" data-lang="en" role="dialog" aria-modal="true" aria-labelledby="pwTitle" aria-hidden="true">
   <div class="pw-modal">
     <button class="pw-close" id="pwClose" type="button" aria-label="Close">&times;</button>
-    <div class="pw-video">
-      <span class="pw-video-play" id="pwVideoPlay" aria-label="Play closing video"></span>
-      <span class="pw-video-tag">Unity Fund Challenge · Trader Career</span>
+
+    <!-- 1) Closing video — the hook (tight 16:9) -->
+    <div class="pw-video-wrap">
+      <div class="pw-video">
+        <span class="pw-video-play" id="pwVideoPlay" aria-label="Play closing video"></span>
+        <span class="pw-video-tag">Unity Fund Challenge · Trader Career</span>
+      </div>
     </div>
+
     <div class="pw-body">
-      <span class="pw-kicker">It&rsquo;s actually FREE — you get a $150 FundedXYZ voucher to buy any challenge</span>
-      <h2 class="pw-title" id="pwTitle">Invest $150 to unlock your full Trader Career</h2>
-      <p class="pw-sub">One payment opens the complete <b>e-learning library</b> plus all <b>4 stages of your Trader Career</b> — Discover, Build, Achieve &amp; Legacy.</p>
+      <span class="pw-kicker">
+        <span data-l="en">It&rsquo;s actually $0 net — you get a $150 FundedXYZ voucher back</span>
+        <span data-l="zh">实际净成本 $0 — 你会拿回价值 $150 的 FundedXYZ 抵用券</span>
+      </span>
+
+      <!-- 2) Outcome headline -->
+      <h2 class="pw-title" id="pwTitle">
+        <span data-l="en">Your <span class="pw-hl">Trader Career</span> starts here — 4 stages from beginner to funded trader.</span>
+        <span data-l="zh">你的<span class="pw-hl">交易员生涯</span>从这里开始 — 四个阶段，从新手到拿到资金的交易员。</span>
+      </h2>
+
+      <!-- 3) VALUE STACK -->
+      <div class="pw-stack">
+        <div class="pw-stack-h"><span data-l="en">Everything you unlock today</span><span data-l="zh">今天解锁的全部内容</span></div>
+        <div class="pw-stack-row">
+          <span class="pw-stack-check">✓</span>
+          <span class="pw-stack-name"><span data-l="en">E-Learning library (full video course)</span><span data-l="zh">电子学习课程库（完整视频课程）</span></span>
+          <span class="pw-stack-val">$299</span>
+        </div>
+        <div class="pw-stack-row">
+          <span class="pw-stack-check">✓</span>
+          <span class="pw-stack-name"><span data-l="en">4-stage Trader Career path</span><span data-l="zh">四阶段交易员生涯路径</span></span>
+          <span class="pw-stack-val">$499</span>
+        </div>
+        <div class="pw-stack-row">
+          <span class="pw-stack-check">✓</span>
+          <span class="pw-stack-name"><span data-l="en">Live coach-led workshops</span><span data-l="zh">教练带队的实时工作坊</span></span>
+          <span class="pw-stack-val">$199</span>
+        </div>
+        <div class="pw-stack-row">
+          <span class="pw-stack-check">✓</span>
+          <span class="pw-stack-name"><span data-l="en">Private offline events</span><span data-l="zh">私人线下活动</span></span>
+          <span class="pw-stack-val inc"><span data-l="en">Included</span><span data-l="zh">已包含</span></span>
+        </div>
+        <div class="pw-stack-row">
+          <span class="pw-stack-check">✓</span>
+          <span class="pw-stack-name"><span data-l="en">Certified Trader credential</span><span data-l="zh">认证交易员证书</span></span>
+          <span class="pw-stack-val inc"><span data-l="en">Included</span><span data-l="zh">已包含</span></span>
+        </div>
+        <div class="pw-stack-total">
+          <span class="pw-stack-total-l"><span data-l="en">Total value <s>$1,000+</s></span><span data-l="zh">总价值 <s>$1,000+</s></span></span>
+          <span class="pw-stack-total-r"><span data-l="en">Today <b>$150</b></span><span data-l="zh">今天只需 <b>$150</b></span></span>
+        </div>
+      </div>
+
+      <!-- 4) KILLER REFRAME -->
+      <div class="pw-reframe">
+        <span class="pw-reframe-badge"><span data-l="en">The real math</span><span data-l="zh">真正的算法</span></span>
+        <p>
+          <span data-l="en">You pay <b>$150</b> → you get a <b>$150 FundedXYZ voucher</b> for any challenge. <span class="pw-net">Net cost: <b>$0</b>.</span> You&rsquo;re not spending — you&rsquo;re moving money from your pocket into your trading career.</span>
+          <span data-l="zh">你支付 <b>$150</b> → 你获得一张可用于任意挑战的 <b>$150 FundedXYZ 抵用券</b>。<span class="pw-net">净成本：<b>$0</b>。</span>这不是花钱 — 你只是把钱从口袋转进了你的交易事业。</span>
+        </p>
+      </div>
+
+      <!-- 5) SOCIAL PROOF — PLACEHOLDER names/results, swap with real testimonials -->
+      <div class="pw-social-h"><span data-l="en">Traders already on the path</span><span data-l="zh">已在路上的交易员</span></div>
+      <div class="pw-cards">
+        <!-- PLACEHOLDER testimonial 1 -->
+        <div class="pw-tcard">
+          <div class="pw-tcard-top">
+            <span class="pw-avatar">WJ</span>
+            <div><div class="pw-tcard-name">Wei Jie L.</div><div class="pw-tcard-stars">★★★★★</div></div>
+          </div>
+          <p class="pw-tcard-q"><span data-l="en">“Passed my first challenge in 3 weeks.”</span><span data-l="zh">“3 周内通过了我的第一个挑战。”</span></p>
+        </div>
+        <!-- PLACEHOLDER testimonial 2 -->
+        <div class="pw-tcard">
+          <div class="pw-tcard-top">
+            <span class="pw-avatar">SN</span>
+            <div><div class="pw-tcard-name">Siti N.</div><div class="pw-tcard-stars">★★★★★</div></div>
+          </div>
+          <p class="pw-tcard-q"><span data-l="en">“The workshops fixed how I manage risk.”</span><span data-l="zh">“工作坊彻底改变了我的风险管理。”</span></p>
+        </div>
+        <!-- PLACEHOLDER testimonial 3 -->
+        <div class="pw-tcard">
+          <div class="pw-tcard-top">
+            <span class="pw-avatar">CK</span>
+            <div><div class="pw-tcard-name">Chen K.M.</div><div class="pw-tcard-stars">★★★★★</div></div>
+          </div>
+          <p class="pw-tcard-q"><span data-l="en">“Went from zero to a funded account.”</span><span data-l="zh">“从零做到拥有资金账户。”</span></p>
+        </div>
+      </div>
+      <!-- PLACEHOLDER stats — swap with real numbers -->
+      <div class="pw-stats">
+        <span><b>2,400+</b> <span data-l="en">traders joined</span><span data-l="zh">交易员已加入</span></span>
+        <span class="pw-dot">·</span>
+        <span><b>$1.2M+</b> <span data-l="en">funded accounts issued</span><span data-l="zh">已发放资金账户</span></span>
+        <span class="pw-dot">·</span>
+        <span><b>4.8★</b> <span data-l="en">rating</span><span data-l="zh">评分</span></span>
+      </div>
+
+      <!-- 6) AUTHORITY -->
+      <div class="pw-authority">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 15 8l6 .9-4.5 4.3L17.5 20 12 16.8 6.5 20l1-6.8L3 8.9 9 8z"></path></svg>
+        <p>
+          <span data-l="en">Built by <b>David Justin</b> — Guinness World Record holder (Largest Crypto Course), founder of FundedXYZ.</span>
+          <span data-l="zh">由 <b>David Justin</b> 打造 — 吉尼斯世界纪录保持者（最大规模加密货币课程），FundedXYZ 创始人。</span>
+        </p>
+      </div>
+
+      <!-- 7) CTA -->
       <div class="pw-actions">
-        <button class="pw-cta" id="pwCta" type="button">Pay $150 — Start Trader Career</button>
-        <button class="pw-later" id="pwLater" type="button">Maybe later</button>
+        <button class="pw-cta" id="pwCta" type="button">
+          <span data-l="en">Start My Trader Career — $150</span><span data-l="zh">开启我的交易员生涯 — $150</span>
+        </button>
+        <p class="pw-micro">
+          <span data-l="en">Includes <b>$150 FundedXYZ voucher</b> · instant access</span>
+          <span data-l="zh">含 <b>$150 FundedXYZ 抵用券</b> · 即时开通</span>
+        </p>
+        <!-- 8) Risk reversal -->
+        <div class="pw-risk">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <span data-l="en">Voucher never expires · Priority support included</span>
+          <span data-l="zh">抵用券永不过期 · 含优先客服支持</span>
+        </div>
+        <button class="pw-later" id="pwLater" type="button">
+          <span data-l="en">I&rsquo;ll stay a free member</span><span data-l="zh">我先保持免费会员</span>
+        </button>
       </div>
     </div>
   </div>
@@ -154,6 +385,28 @@
   var overlay = document.getElementById("pwOverlay");
   if (!overlay) return;
   var opened = false, autoTimer = null;
+
+  // ---- Language sync: follow the page EN / 中文 toggle ----
+  function setLang(l) {
+    overlay.setAttribute("data-lang", l === "zh" ? "zh" : "en");
+  }
+  // Infer initial state from the page's pressed button, default EN.
+  (function initLang() {
+    var zhBtn = document.querySelector('.uc-lang button[lang="zh-Hans"][aria-pressed="true"]');
+    setLang(zhBtn ? "zh" : "en");
+  })();
+  // Wire every language button on the page (topbar + menu sheet).
+  document.querySelectorAll('.uc-lang button[lang]').forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var isZh = (btn.getAttribute("lang") || "").indexOf("zh") === 0;
+      // reflect pressed state across all lang groups so they stay in sync
+      document.querySelectorAll('.uc-lang button[lang]').forEach(function (b) {
+        var same = ((b.getAttribute("lang") || "").indexOf("zh") === 0) === isZh;
+        b.setAttribute("aria-pressed", same ? "true" : "false");
+      });
+      setLang(isZh ? "zh" : "en");
+    });
+  });
 
   function open() {
     overlay.classList.add("is-open");
@@ -183,7 +436,8 @@
   // CTA — demo only (no real payment)
   document.getElementById("pwCta").addEventListener("click", function () {
     var cta = document.getElementById("pwCta");
-    cta.textContent = "Starting your Trader Career…";
+    var isZh = overlay.getAttribute("data-lang") === "zh";
+    cta.textContent = isZh ? "\u6b63\u5728\u5f00\u542f\u4f60\u7684\u4ea4\u6613\u5458\u751f\u6daf\u2026" : "Starting your Trader Career\u2026";
     cta.style.filter = "brightness(1.1)";
     setTimeout(close, 900);
   });
