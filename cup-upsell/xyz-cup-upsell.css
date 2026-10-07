@@ -1,0 +1,196 @@
+/* =====================================================================
+   XYZ CUP — Upsell Kit  (self-contained, drop-in)
+   Design tokens mirror app.fundedxyz.com / app.unitycrypto.com (dark + gold)
+   All classes namespaced .xcu- so nothing collides with the host page.
+   ===================================================================== */
+.xcu-root{
+  --xcu-bg:#0b0c0e; --xcu-panel:#15171b; --xcu-card:#121418;
+  --xcu-text:#f5f5f6; --xcu-muted:#aeb0b8;
+  --xcu-gold:#edc443; --xcu-gold-hi:#f6d466; --xcu-gold-soft:rgba(237,196,67,.12);
+  --xcu-green:#00d4aa; --xcu-green-soft:rgba(0,212,170,.12);
+  --xcu-red:#e74c3c;
+  --xcu-line:#2b2d33; --xcu-gline:#454034;
+  --xcu-font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+  --xcu-r:16px; --xcu-rs:12px;
+}
+.xcu-root, .xcu-root *{ box-sizing:border-box; font-family:var(--xcu-font); }
+
+/* language visibility */
+.xcu-root[data-lang="en"] [data-x="zh"]{ display:none; }
+.xcu-root[data-lang="zh"] [data-x="en"]{ display:none; }
+
+/* ---------- overlay / modal shell ---------- */
+.xcu-overlay{
+  position:fixed; inset:0; z-index:2147483000;
+  display:flex; align-items:center; justify-content:center;
+  padding:18px; background:rgba(4,5,7,.72); backdrop-filter:blur(6px);
+  opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+.xcu-overlay.is-open{ opacity:1; pointer-events:auto; }
+.xcu-modal{
+  width:100%; max-width:440px; background:linear-gradient(180deg,#141519,#0e0f12);
+  border:1px solid var(--xcu-gline); border-radius:var(--xcu-r);
+  box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(237,196,67,.06) inset;
+  color:var(--xcu-text); position:relative; overflow:hidden;
+  transform:translateY(16px) scale(.98); transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  max-height:94vh; overflow-y:auto;
+}
+.xcu-overlay.is-open .xcu-modal{ transform:none; }
+.xcu-modal.xcu-wide{ max-width:720px; }
+.xcu-close{
+  position:absolute; top:12px; right:12px; z-index:5;
+  width:34px; height:34px; border-radius:50%; cursor:pointer;
+  background:rgba(255,255,255,.06); border:1px solid var(--xcu-line);
+  color:var(--xcu-muted); font-size:18px; line-height:1; display:grid; place-items:center;
+}
+.xcu-close:hover{ color:var(--xcu-text); background:rgba(255,255,255,.12); }
+.xcu-body{ padding:26px 24px 24px; text-align:center; }
+.xcu-eyebrow{ font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--xcu-gold); margin-bottom:8px; }
+.xcu-h{ font-size:22px; font-weight:800; line-height:1.25; margin:0 0 8px; }
+.xcu-h .xcu-hl{ color:var(--xcu-gold); }
+.xcu-p{ font-size:14px; line-height:1.55; color:var(--xcu-muted); margin:0 auto 16px; max-width:360px; }
+
+/* ---------- buttons ---------- */
+.xcu-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:14px 18px; border:none; border-radius:50px; cursor:pointer;
+  font-size:15px; font-weight:800; color:#1a1500;
+  background:linear-gradient(135deg,var(--xcu-gold),var(--xcu-gold-hi));
+  box-shadow:0 10px 30px rgba(237,196,67,.28); transition:transform .12s, box-shadow .12s;
+  text-decoration:none;
+}
+.xcu-btn:hover{ transform:translateY(-1px); box-shadow:0 14px 36px rgba(237,196,67,.4); }
+.xcu-btn:active{ transform:translateY(0); }
+.xcu-btn--ghost{
+  background:transparent; color:var(--xcu-muted); box-shadow:none;
+  border:1px solid var(--xcu-line); font-weight:600;
+}
+.xcu-btn--ghost:hover{ color:var(--xcu-text); background:rgba(255,255,255,.04); transform:none; box-shadow:none; }
+.xcu-dismiss{ margin-top:10px; background:none; border:none; color:var(--xcu-muted); font-size:12.5px; cursor:pointer; text-decoration:underline; }
+.xcu-dismiss:hover{ color:var(--xcu-text); }
+
+/* ---------- code chip + countdown ---------- */
+.xcu-codewrap{
+  margin:14px auto 6px; display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.xcu-code{
+  font-family:'JetBrains Mono',ui-monospace,monospace; font-weight:800; letter-spacing:.08em;
+  font-size:20px; color:var(--xcu-gold-hi); padding:10px 16px; border-radius:12px;
+  background:var(--xcu-gold-soft); border:1px dashed var(--xcu-gline);
+}
+.xcu-copy{ font-size:12px; padding:9px 12px; border-radius:10px; cursor:pointer; border:1px solid var(--xcu-line); background:rgba(255,255,255,.05); color:var(--xcu-text); font-weight:600; }
+.xcu-copy:hover{ background:rgba(255,255,255,.1); }
+.xcu-copy.is-done{ color:var(--xcu-green); border-color:var(--xcu-green); }
+.xcu-count{ font-size:12.5px; color:var(--xcu-muted); margin-top:6px; }
+.xcu-count b{ color:var(--xcu-red); font-variant-numeric:tabular-nums; font-weight:800; }
+
+/* ---------- reward strip ---------- */
+.xcu-rewards{ display:flex; gap:8px; justify-content:center; margin:14px 0 4px; flex-wrap:wrap; }
+.xcu-reward{
+  flex:1 1 auto; min-width:92px; padding:10px 8px; border-radius:12px;
+  background:var(--xcu-card); border:1px solid var(--xcu-line);
+}
+.xcu-reward b{ display:block; font-size:18px; font-weight:800; color:var(--xcu-gold); }
+.xcu-reward span{ font-size:10.5px; color:var(--xcu-muted); letter-spacing:.04em; }
+
+/* =====================================================================
+   🎰 Spin wheel
+   ===================================================================== */
+.xcu-wheel-stage{ position:relative; width:260px; height:260px; margin:6px auto 14px; }
+.xcu-wheel{
+  width:100%; height:100%; border-radius:50%;
+  border:6px solid var(--xcu-gline); box-shadow:0 0 0 4px rgba(237,196,67,.12), 0 20px 50px rgba(0,0,0,.5);
+  transition:transform 4.6s cubic-bezier(.13,.9,.12,1);
+  will-change:transform;
+}
+.xcu-wheel-ptr{
+  position:absolute; top:-6px; left:50%; transform:translateX(-50%);
+  width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent;
+  border-top:22px solid var(--xcu-gold-hi); z-index:4; filter:drop-shadow(0 2px 3px rgba(0,0,0,.5));
+}
+.xcu-wheel-hub{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:54px; height:54px; border-radius:50%; z-index:3;
+  background:radial-gradient(circle at 35% 30%,#2a2c32,#101114);
+  border:2px solid var(--xcu-gold); display:grid; place-items:center;
+  font-size:22px;
+}
+.xcu-spinbtn{ max-width:280px; margin:0 auto; }
+
+/* confetti */
+.xcu-confetti{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:6; }
+.xcu-confetti i{
+  position:absolute; top:-12px; width:8px; height:14px; opacity:.95;
+  animation:xcu-fall linear forwards;
+}
+@keyframes xcu-fall{ to{ transform:translateY(560px) rotate(720deg); opacity:0; } }
+
+/* =====================================================================
+   Free vs X Mode comparison (decision point)
+   ===================================================================== */
+.xcu-compare{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:8px 0 6px; text-align:left; }
+@media (max-width:560px){ .xcu-compare{ grid-template-columns:1fr; } }
+.xcu-col{
+  position:relative; border-radius:16px; padding:18px 16px 16px;
+  background:var(--xcu-card); border:1px solid var(--xcu-line); display:flex; flex-direction:column;
+}
+.xcu-col--x{
+  border:1.5px solid var(--xcu-gold);
+  background:linear-gradient(180deg,rgba(237,196,67,.10),rgba(237,196,67,.02));
+  box-shadow:0 12px 40px rgba(237,196,67,.14);
+}
+.xcu-tag{
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border-radius:20px; white-space:nowrap;
+  background:linear-gradient(135deg,var(--xcu-gold),var(--xcu-gold-hi)); color:#1a1500;
+}
+.xcu-col h4{ margin:4px 0 2px; font-size:17px; font-weight:800; }
+.xcu-col--x h4{ color:var(--xcu-gold-hi); }
+.xcu-col .xcu-sub{ font-size:11.5px; color:var(--xcu-muted); margin-bottom:12px; }
+.xcu-feat{ list-style:none; margin:0 0 14px; padding:0; display:flex; flex-direction:column; gap:9px; }
+.xcu-feat li{ font-size:13px; line-height:1.4; display:flex; gap:9px; align-items:flex-start; color:var(--xcu-text); }
+.xcu-feat .xcu-ic{ flex:0 0 18px; font-size:14px; line-height:1.3; }
+.xcu-feat .xcu-no{ color:var(--xcu-muted); }
+.xcu-feat .xcu-no .xcu-ic{ color:var(--xcu-red); }
+.xcu-big{ font-size:26px; font-weight:800; }
+.xcu-col--x .xcu-big{ color:var(--xcu-gold); }
+.xcu-col .xcu-pricetag{ font-size:12px; color:var(--xcu-muted); margin-bottom:12px; }
+.xcu-col .xcu-cta-slot{ margin-top:auto; }
+.xcu-strike{ text-decoration:line-through; color:var(--xcu-muted); font-size:12px; }
+
+/* =====================================================================
+   recurring / toast popup (bottom-right card)
+   ===================================================================== */
+.xcu-toast{
+  position:fixed; right:18px; bottom:18px; z-index:2147482000; width:340px; max-width:calc(100vw - 36px);
+  background:linear-gradient(180deg,#16181d,#101114); color:var(--xcu-text);
+  border:1px solid var(--xcu-gline); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.5);
+  padding:16px 16px 14px; transform:translateY(26px); opacity:0; pointer-events:none;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s;
+}
+.xcu-toast.is-open{ transform:none; opacity:1; pointer-events:auto; }
+.xcu-toast .xcu-close{ top:8px; right:8px; width:26px; height:26px; font-size:14px; }
+.xcu-toast .xcu-th{ font-size:14px; font-weight:800; margin:0 22px 4px 0; }
+.xcu-toast .xcu-tp{ font-size:12.5px; color:var(--xcu-muted); margin:0 0 12px; line-height:1.45; }
+.xcu-toast .xcu-btn{ padding:11px 14px; font-size:13.5px; }
+
+/* =====================================================================
+   floating badge (persistent re-open hook for an active code)
+   ===================================================================== */
+.xcu-fab{
+  position:fixed; left:18px; bottom:18px; z-index:2147481500; cursor:pointer;
+  display:flex; align-items:center; gap:8px; padding:10px 14px; border-radius:50px;
+  background:linear-gradient(135deg,var(--xcu-gold),var(--xcu-gold-hi)); color:#1a1500;
+  font-weight:800; font-size:13px; border:none; box-shadow:0 10px 30px rgba(237,196,67,.3);
+  animation:xcu-pulse 2.4s ease-in-out infinite;
+}
+.xcu-fab[hidden]{ display:none; }
+@keyframes xcu-pulse{ 0%,100%{ box-shadow:0 10px 30px rgba(237,196,67,.3); } 50%{ box-shadow:0 10px 38px rgba(237,196,67,.55); } }
+.xcu-fab .xcu-fab-x{ font-size:15px; }
+
+@media (max-width:480px){
+  .xcu-body{ padding:22px 18px 20px; }
+  .xcu-h{ font-size:19px; }
+  .xcu-wheel-stage{ width:220px; height:220px; }
+}
